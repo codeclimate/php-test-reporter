@@ -1,16 +1,10 @@
 <?php
 namespace CodeClimate\Bundle\TestReporterBundle\Command;
 
-/* use Satooshi\Bundle\CoverallsV1Bundle\Api\Jobs; */
-/* use Satooshi\Bundle\CoverallsV1Bundle\Config\Configuration; */
-/* use Satooshi\Bundle\CoverallsV1Bundle\Config\Configurator; */
-/* use Satooshi\Bundle\CoverallsV1Bundle\Repository\JobsRepository; */
-/* use Satooshi\Component\Log\ConsoleLogger; */
-/* use Guzzle\Http\Client; */
-/* use Psr\Log\NullLogger; */
+use CodeClimate\Bundle\TestReporterBundle\CoverageCollector;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-/* use Symfony\Component\Console\Input\InputOption; */
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -34,7 +28,13 @@ class TestReporterCommand extends Command
     {
         $this
         ->setName('test-reporter')
-        ->setDescription('Code Climate PHP Test Reporter');
+        ->setDescription('Code Climate PHP Test Reporter')
+        ->addOption(
+            'stdout',
+            null,
+            InputOption::VALUE_NONE,
+            'Do not upload, print JSON payload to stdout'
+        );
     }
 
     /**
@@ -44,7 +44,15 @@ class TestReporterCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // TODO: Parse clover.xml -> Upload to API
+        $collector = new CoverageCollector();
+        $json = $collector->collectAsJson();
+
+        if ($input->getOption('stdout'))
+        {
+            $output->writeln((string)$json);
+        } else {
+            // TODO: Upload to CC API
+        }
 
         return 0;
     }

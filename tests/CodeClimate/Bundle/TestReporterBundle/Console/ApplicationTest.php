@@ -1,74 +1,59 @@
 <?php
 namespace CodeClimate\Bundle\TestReporterBundle\Console;
 
-use CodeClimate\ProjectTestCase;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
-class ApplicationTest extends ProjectTestCase
+class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
-    protected function setUp()
+    const PROJECT_DIR = "/tmp/php-test-reporter-example-project";
+
+    protected $srcDir;
+
+    public function setUp()
     {
-        $this->projectDir = realpath(__DIR__ . '/../../../..');
-        $this->setUpDir($this->projectDir);
+        $this->srcDir = realpath(__DIR__ . '/../../../../..');
+        $this->setupProject();
+        $this->setupEnvironment();
     }
 
-    protected function tearDown()
+    public function tearDown()
     {
-        $this->rmFile($this->cloverXmlPath);
-        $this->rmFile($this->jsonPath);
-        $this->rmDir($this->logsDir);
-        $this->rmDir($this->buildDir);
-    }
-
-    protected function getCloverXml()
-    {
-        $xml = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1365848893">
-  <project timestamp="1365848893">
-    <file name="%s/test.php">
-      <class name="TestFile" namespace="global">
-        <metrics methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
-      </class>
-      <line num="5" type="method" name="__construct" crap="1" count="0"/>
-      <line num="7" type="stmt" count="0"/>
-    </file>
-    <package name="Hoge">
-      <file name="%s/test2.php">
-        <class name="TestFile" namespace="Hoge">
-          <metrics methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
-        </class>
-        <line num="6" type="method" name="__construct" crap="1" count="0"/>
-        <line num="8" type="stmt" count="0"/>
-      </file>
-    </package>
-  </project>
-</coverage>
-XML;
-        return sprintf($xml, $this->srcDir, $this->srcDir);
-    }
-
-    protected function dumpCloverXml()
-    {
-        file_put_contents($this->cloverXmlPath, $this->getCloverXml());
+        chdir($this->srcDir);
+        shell_exec("rm -rf ".static::PROJECT_DIR);
     }
 
     /**
      * @test
      */
-    public function shouldExecuteTestReporterApplication()
+    public function shouldExecuteSuccessfully()
     {
-        $this->makeProjectDir(null, $this->logsDir);
-        $this->dumpCloverXml();
-
-        $app = new Application($this->rootDir, 'PHP Test Reporter', '1.0.0');
-        $app->setAutoExit(false); // avoid to call exit() in Application
-
-        // TODO: set any required environment variables
-
+        $app = new Application($this->srcDir, 'PHP Test Reporter', '1.0.0');
+        $app->setAutoExit(false);
         $tester = new ApplicationTester($app);
-        $actual = $tester->run([]);
 
-        $this->assertEquals(0, $actual);
+        $status = $tester->run(array('--stdout' => true));
+
+        $this->assertEquals(0, $status);
+    }
+
+    private function setupProject()
+    {
+        mkdir(static::PROJECT_DIR."/build/logs", 0755, true);
+        copy("tests/files/test.php", static::PROJECT_DIR."/test.php");
+        copy("tests/files/test.php", static::PROJECT_DIR."/test2.php");
+        copy("tests/files/clover.xml", static::PROJECT_DIR."/build/logs/clover.xml");
+
+        chdir(static::PROJECT_DIR);
+
+        shell_exec("git init");
+        shell_exec("git add test.php test2.php");
+        shell_exec("git commit -m 'Initial commit'");
+        shell_exec("git remote add origin git@github.com:foo/bar.git");
+    }
+
+    /* TODO: Set API token and other CI variables */
+    private function setupEnvironment()
+    {
+        $_SERVER['COVERALLS_REPO_TOKEN'] = '';
     }
 }
