@@ -63,7 +63,7 @@ class JsonFile extends \Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile
         foreach ($this->getSourceFiles() as $sourceFile) {
             array_push($sourceFiles, array(
                 "name"     => $sourceFile->getName(),
-                "coverage" => $sourceFile->getCoverage(),
+                "coverage" => json_encode($sourceFile->getCoverage()),
                 "blob_id"  => $this->calculateBlobId($sourceFile)
             ));
         }
