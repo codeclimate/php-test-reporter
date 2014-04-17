@@ -45,6 +45,7 @@ class TestReporterCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $ret = 0;
         $collector = new CoverageCollector();
         $json = $collector->collectAsJson();
 
@@ -64,17 +65,20 @@ class TestReporterCommand extends Command
                         break;
                     case 401:
                         $output->writeln("An invalid CODECLIMATE_REPO_TOKEN repo token was specified.");
+                        $ret = 1;
                         break;
                     default:
                         $output->writeln("Status code: ".$code);
+                        $ret = 1;
                         break;
                 }
             } else {
                 $output->writeln("Unknown error posting Test coverage data.");
+                $ret = 1;
             }
         }
 
-        return 0;
+        return $ret;
     }
 
     // accessor
