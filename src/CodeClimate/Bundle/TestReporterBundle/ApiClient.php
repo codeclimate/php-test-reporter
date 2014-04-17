@@ -14,8 +14,7 @@ class ApiClient
         $this->client = new Client();
         $this->apiHost = "https://codeclimate.com";
 
-        if (isset($_SERVER["CODECLIMATE_API_HOST"]))
-        {
+        if (isset($_SERVER["CODECLIMATE_API_HOST"])) {
           $this->apiHost = $_SERVER["CODECLIMATE_API_HOST"];
         }
 

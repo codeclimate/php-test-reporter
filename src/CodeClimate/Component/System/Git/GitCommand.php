@@ -19,10 +19,8 @@ class GitCommand extends SystemCommand
         $command  = $this->createCommand("branch");
         $branches = $this->executeCommand($command);
 
-        foreach ($branches as $branch)
-        {
-            if ($branch[0] == "*")
-            {
+        foreach ($branches as $branch) {
+            if ($branch[0] == "*") {
                 return str_replace("* ", "", $branch);
             }
         }

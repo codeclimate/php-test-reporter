@@ -49,8 +49,7 @@ class TestReporterCommand extends Command
         $collector = new CoverageCollector();
         $json = $collector->collectAsJson();
 
-        if ($input->getOption('stdout'))
-        {
+        if ($input->getOption('stdout')) {
             $output->writeln((string)$json);
         } else {
             $client = new ApiClient();

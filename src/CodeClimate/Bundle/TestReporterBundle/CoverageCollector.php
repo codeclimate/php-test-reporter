@@ -29,8 +29,7 @@ class CoverageCollector
         $jsonFile = new JsonFile();
         $jsonFile->setRunAt($cloverJsonFile->getRunAt());
 
-        foreach ($cloverJsonFile->getSourceFiles() as $sourceFile)
-        {
+        foreach ($cloverJsonFile->getSourceFiles() as $sourceFile) {
             $jsonFile->addSourceFile($sourceFile);
         }
 
