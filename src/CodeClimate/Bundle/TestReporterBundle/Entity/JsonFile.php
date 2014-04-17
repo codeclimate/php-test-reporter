@@ -22,8 +22,7 @@ class JsonFile extends \Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile
 
     public function getRunAt()
     {
-        // TODO: parse date and return as unix seconds
-        return parent::getRunAt();
+        return strtotime(parent::getRunAt());
     }
 
     public function getRepoToken()
