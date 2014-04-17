@@ -7,13 +7,13 @@ Code Climate - https://codeclimate.com
 
 ## Installation
 
-This gem requires a user, but not necessarily a paid account, on Code 
-Climate, so if you don't have one the first step is to signup at: 
+This package requires a user, but not necessarily a paid account, on 
+Code Climate, so if you don't have one the first step is to signup at: 
 https://codeclimate.com. Then:
 
 *TODO*
 
-## Configuration
+## Usage
 
 *TODO*
 
