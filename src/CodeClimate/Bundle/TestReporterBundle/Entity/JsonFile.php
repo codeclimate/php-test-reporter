@@ -74,7 +74,8 @@ class JsonFile extends \Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile
     protected function calculateBlobId($sourceFile)
     {
         $content = file_get_contents($sourceFile->getPath());
+        $header  = "blob ".strlen($content)."\0";
 
-        return sha1("blob ".$content."\0");
+        return sha1($header.$content);
     }
 }
