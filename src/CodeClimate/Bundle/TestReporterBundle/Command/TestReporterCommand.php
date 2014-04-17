@@ -2,6 +2,7 @@
 namespace CodeClimate\Bundle\TestReporterBundle\Command;
 
 use CodeClimate\Bundle\TestReporterBundle\CoverageCollector;
+use CodeClimate\Bundle\TestReporterBundle\ApiClient;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -51,7 +52,8 @@ class TestReporterCommand extends Command
         {
             $output->writeln((string)$json);
         } else {
-            // TODO: Upload to CC API
+            $client = new ApiClient();
+            $client->send($json);
         }
 
         return 0;
