@@ -1,6 +1,8 @@
 <?php
 namespace CodeClimate\Bundle\TestReporterBundle;
 
+use CodeClimate\Component\System\Git\GitCommand;
+use CodeClimate\Bundle\TestReporterBundle\Entity\JsonFile;
 use Satooshi\Bundle\CoverallsV1Bundle\Api\Jobs;
 use Satooshi\Bundle\CoverallsV1Bundle\Config\Configuration;
 
@@ -22,10 +24,15 @@ class CoverageCollector
 
     public function collectAsJson()
     {
-        $jsonFile = $this->api->collectCloverXml()->getJsonFile();
+        $cloverJsonFile = $this->api->collectCloverXml()->getJsonFile();
 
-        $this->api->collectGitInfo();
-        $this->api->collectEnvVars($_SERVER);
+        $jsonFile = new JsonFile();
+        $jsonFile->setRunAt($cloverJsonFile->getRunAt());
+
+        foreach ($cloverJsonFile->getSourceFiles() as $sourceFile)
+        {
+            $jsonFile->addSourceFile($sourceFile);
+        }
 
         return $jsonFile;
     }

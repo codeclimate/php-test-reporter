@@ -16,12 +16,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         $this->setupEnvironment();
     }
 
-    public function tearDown()
-    {
-        chdir($this->srcDir);
-        shell_exec("rm -rf ".static::PROJECT_DIR);
-    }
-
     /**
      * @test
      */
@@ -38,6 +32,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
     private function setupProject()
     {
+        shell_exec("rm -rf ".static::PROJECT_DIR);
         mkdir(static::PROJECT_DIR."/build/logs", 0755, true);
         copy("tests/files/test.php", static::PROJECT_DIR."/test.php");
         copy("tests/files/test.php", static::PROJECT_DIR."/test2.php");
@@ -51,9 +46,9 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         shell_exec("git remote add origin git@github.com:foo/bar.git");
     }
 
-    /* TODO: Set API token and other CI variables */
     private function setupEnvironment()
     {
-        $_SERVER['COVERALLS_REPO_TOKEN'] = '';
+        // TODO: Set up other CI variables
+        $_SERVER["CODECLIMATE_REPO_TOKEN"] = 'abc123';
     }
 }
