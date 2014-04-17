@@ -10,13 +10,13 @@ class JsonFile extends \Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile
     public function toArray()
     {
        return array(
-            "partial"     => false,
-            "run_at"      => $this->getRunAt(),
-            "repo_token"  => $this->getRepoToken(),
-            "environment" => $this->getEnvironment(),
-            "git"         => $this->collectGitInfo(),
-            "ci_service"  => $this->collectCiServiceInfo(),
-            "sourceFiles" => $this->collectSourceFiles()
+            "partial"      => false,
+            "run_at"       => $this->getRunAt(),
+            "repo_token"   => $this->getRepoToken(),
+            "environment"  => $this->getEnvironment(),
+            "git"          => $this->collectGitInfo(),
+            "ci_service"   => $this->collectCiServiceInfo(),
+            "source_files" => $this->collectSourceFiles()
         );
     }
 
