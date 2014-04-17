@@ -48,7 +48,10 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
     private function setupEnvironment()
     {
-        // TODO: Set up other CI variables
         $_SERVER["CODECLIMATE_REPO_TOKEN"] = 'abc123';
+        $_SERVER["TRAVIS"] = "1";
+        $_SERVER["TRAVIS_BRANCH"] = "master";
+        $_SERVER["TRAVIS_JOB_ID"] = "1";
+        $_SERVER["TRAVIS_PULL_REQUEST"] = "fb-feature";
     }
 }

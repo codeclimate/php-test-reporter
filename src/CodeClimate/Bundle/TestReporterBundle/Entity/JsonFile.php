@@ -2,6 +2,7 @@
 namespace CodeClimate\Bundle\TestReporterBundle\Entity;
 
 use CodeClimate\Component\System\Git\GitCommand;
+use CodeClimate\Bundle\TestReporterBundle\Entity\CiInfo;
 use CodeClimate\Bundle\TestReporterBundle\Version;
 
 class JsonFile extends \Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile
@@ -51,7 +52,9 @@ class JsonFile extends \Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile
 
     protected function collectCiServiceInfo()
     {
-        return null;
+        $ciInfo = new CiInfo();
+
+        return $ciInfo->toArray();
     }
 
     protected function collectSourceFiles()
