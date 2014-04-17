@@ -53,7 +53,25 @@ class TestReporterCommand extends Command
             $output->writeln((string)$json);
         } else {
             $client = new ApiClient();
-            $client->send($json);
+            $response = $client->send($json);
+
+            if ($response) {
+                $code = $response->getStatusCode();
+
+                switch ($code) {
+                    case 200:
+                        $output->writeln("Test coverage data sent");
+                        break;
+                    case 401:
+                        $output->writeln("An invalid CODECLIMATE_REPO_TOKEN repo token was specified.");
+                        break;
+                    default:
+                        $output->writeln("Status code: ".$code);
+                        break;
+                }
+            } else {
+                $output->writeln("Unknown error posting Test coverage data.");
+            }
         }
 
         return 0;
