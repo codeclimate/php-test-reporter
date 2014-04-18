@@ -9,6 +9,10 @@ class CiInfo
             return $this->travisProperties();
         }
 
+        if (isset($_SERVER["CIRCLECI"])) {
+            return $this->circleProperties();
+        }
+
         if (isset($_SERVER["SEMAPHORE"])) {
             return $this->semaphoreProperties();
         }
