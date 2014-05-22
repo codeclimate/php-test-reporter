@@ -3,5 +3,5 @@ php:
   - 5.5
 install: composer install --dev
 before_script:
-  - ' git config --global user.email "travis-ci@codeclimate.com"
-  - ' git config --global user.name "Travis CI"
+  - git config --global user.email "travis-ci@codeclimate.com"
+  - git config --global user.name "Travis CI"
