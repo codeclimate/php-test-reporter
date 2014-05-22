@@ -2,3 +2,7 @@ language: php
 php:
   - 5.5
 install: composer install --dev
+env:
+  global:
+    - GIT_AUTHOR_EMAIL="travis-ci@codeclimate.com"
+    - GIT_AUTHOR_NAME="Travis CI"
