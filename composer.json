@@ -5,7 +5,7 @@
     "homepage": "https://github.com/codeclimate/php-test-reporter",
     "type": "library",
     "license": "MIT",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Code Climate",
