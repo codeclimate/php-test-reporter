@@ -23,7 +23,11 @@ class CoverageCollector
         $config->setSrcDir($rootDir);
         $this->setCloverPaths($paths);
         foreach ($this->getCloverPaths() as $path) {
-            $config->addCloverXmlPath($rootDir . DIRECTORY_SEPARATOR . $path);
+            if (file_exists($path)) {
+                $config->addCloverXmlPath($path);
+            } else {
+                $config->addCloverXmlPath($rootDir . DIRECTORY_SEPARATOR . $path);
+            }
         }
 
         $this->api = new Jobs($config);
