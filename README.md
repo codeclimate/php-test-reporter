@@ -75,6 +75,23 @@ right hand side of your feed.
 Please contact hello@codeclimate.com if you need any assistance setting 
 this up.
 
+## SSL Certificate Issue
+
+If you encounter an error involving SSL certificates when trying to report
+coverage data from your CI server, you can work around it by manually posting
+the data via `curl`:
+
+```yaml
+after_script:
+  - CODECLIMATE_REPO_TOKEN="..." bin/test-reporter --stdout > codeclimate.json
+  - curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v1.0.1-dev)' https://codeclimate.com/test_reports
+```
+
+More details can be found in [this issue][issue].
+
+[issue]: https://github.com/codeclimate/php-test-reporter/issues/3
+
+
 ## Contributions
 
 Patches, bug fixes, feature requests, and pull requests are welcome on 
