@@ -7,6 +7,8 @@ Code Climate's hosted, automated code review service.
 
 Code Climate - https://codeclimate.com
 
+**Important:** If you encounter an error involving SSL certificates, see the **Known Issue: SSL Certificate Error** section below.
+
 ## Installation
 
 This package requires a user, but not necessarily a paid account, on 
@@ -75,7 +77,7 @@ right hand side of your feed.
 Please contact hello@codeclimate.com if you need any assistance setting 
 this up.
 
-## SSL Certificate Issue
+## Known Issue: SSL Certificate Error
 
 If you encounter an error involving SSL certificates when trying to report
 coverage data from your CI server, you can work around it by manually posting
