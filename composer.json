@@ -16,7 +16,7 @@
     "require": {
         "php": ">=5.3",
         "guzzle/guzzle": ">=3.0",
-        "satooshi/php-coveralls": "dev-master",
+        "satooshi/php-coveralls": ">=0.6.1",
         "symfony/console": ">=2.0"
     },
     "require-dev": {
@@ -29,5 +29,9 @@
         }
     },
     "bin": ["composer/bin/test-reporter"],
-    "extra": { }
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+       }
+    }
 }
