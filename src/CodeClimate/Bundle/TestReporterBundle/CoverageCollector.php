@@ -8,20 +8,48 @@ use Satooshi\Bundle\CoverallsV1Bundle\Config\Configuration;
 
 class CoverageCollector
 {
-    const RELATIVE_PATH = 'build/logs/clover.xml';
-
     protected $api;
 
-    public function __construct()
+    /**
+     * Array that holds list of relative paths to Clover XML files
+     * @var array
+     */
+    protected $cloverPaths = array();
+
+    public function __construct($paths)
     {
         $rootDir = getcwd();
         $config = new Configuration();
         $config->setSrcDir($rootDir);
-        $config->addCloverXmlPath($rootDir . DIRECTORY_SEPARATOR . static::RELATIVE_PATH);
+        $this->setCloverPaths($paths);
+        foreach ($this->getCloverPaths() as $path) {
+            if (file_exists($path)) {
+                $config->addCloverXmlPath($path);
+            } else {
+                $config->addCloverXmlPath($rootDir . DIRECTORY_SEPARATOR . $path);
+            }
+        }
 
         $this->api = new Jobs($config);
     }
 
+    /**
+     * Set a list of Clover XML paths
+     * @param array $paths Array of relative paths to Clovers XML files
+     */
+    public function setCloverPaths($paths)
+    {
+        $this->cloverPaths = $paths;
+    }
+
+    /**
+     * Get a list of Clover XML paths
+     * @return array Array of relative Clover XML file locations
+     */
+    public function getCloverPaths()
+    {
+        return $this->cloverPaths;
+    }
     public function collectAsJson()
     {
         $cloverJsonFile = $this->api->collectCloverXml()->getJsonFile();

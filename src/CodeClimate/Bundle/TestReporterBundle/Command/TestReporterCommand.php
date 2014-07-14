@@ -35,6 +35,13 @@ class TestReporterCommand extends Command
             null,
             InputOption::VALUE_NONE,
             'Do not upload, print JSON payload to stdout'
+        )
+        ->addOption(
+            'coverage-report',
+            null,
+            InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+            'Location of clover style CodeCoverage report, as produced by PHPUnit\'s --coverage-clover option.',
+            array('build/logs/clover.xml')
         );
     }
 
@@ -46,7 +53,7 @@ class TestReporterCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $ret = 0;
-        $collector = new CoverageCollector();
+        $collector = new CoverageCollector($input->getOption('coverage-report'));
         $json = $collector->collectAsJson();
 
         if ($input->getOption('stdout')) {
