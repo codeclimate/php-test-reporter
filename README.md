@@ -109,3 +109,4 @@ See LICENSE.txt
 
 Portions of the implementation were inspired by the php-coveralls 
 project.
+
