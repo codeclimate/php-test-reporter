@@ -3,8 +3,8 @@ namespace CodeClimate\Bundle\TestReporterBundle;
 
 use CodeClimate\Component\System\Git\GitCommand;
 use CodeClimate\Bundle\TestReporterBundle\Entity\JsonFile;
-use Satooshi\Bundle\CoverallsV1Bundle\Api\Jobs;
-use Satooshi\Bundle\CoverallsV1Bundle\Config\Configuration;
+use Contrib\Bundle\CoverallsV1Bundle\Api\Jobs;
+use Contrib\Bundle\CoverallsV1Bundle\Config\Configuration;
 
 class CoverageCollector
 {

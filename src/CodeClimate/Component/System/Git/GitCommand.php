@@ -1,7 +1,7 @@
 <?php
 namespace CodeClimate\Component\System\Git;
 
-use Satooshi\Component\System\SystemCommand;
+use Contrib\Component\System\SystemCommand;
 
 class GitCommand extends SystemCommand
 {
