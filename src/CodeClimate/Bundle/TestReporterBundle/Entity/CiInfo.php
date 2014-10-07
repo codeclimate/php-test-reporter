@@ -29,6 +29,10 @@ class CiInfo
             return $this->codeshipProperties();
         }
 
+        if (isset($_SERVER["BUILDBOX"])) {
+            return $this->buildboxProperties();
+        }
+
         return array();
     }
 
@@ -89,6 +93,18 @@ class CiInfo
             "build_url"        => $_SERVER["CI_BUILD_URL"],
             "branch"           => $_SERVER["CI_BRANCH"],
             "commit_sha"       => $_SERVER["CI_COMMIT_ID"]
+        );
+    }
+
+    protected function buildboxProperties()
+    {
+        return array(
+            "name"             => "buildbox",
+            "build_identifier" => $_SERVER["BUILDBOX_BUILD_ID"],
+            "build_url"        => $_SERVER["BUILDBOX_BUILD_URL"],
+            "branch"           => $_SERVER["BUILDBOX_BRANCH"],
+            "commit_sha"       => $_SERVER["BUILDBOX_COMMIT"],
+            "pull_request"     => $_SERVER["BUILDBOX_PULL_REQUEST"]
         );
     }
 }
