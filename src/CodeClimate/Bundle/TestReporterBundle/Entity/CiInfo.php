@@ -33,6 +33,10 @@ class CiInfo
             return $this->buildboxProperties();
         }
 
+        if (isset($_SERVER["WERCKER"])) {
+            return $this->werckerProperties();
+        }
+
         return array();
     }
 
@@ -105,6 +109,17 @@ class CiInfo
             "branch"           => $_SERVER["BUILDBOX_BRANCH"],
             "commit_sha"       => $_SERVER["BUILDBOX_COMMIT"],
             "pull_request"     => $_SERVER["BUILDBOX_PULL_REQUEST"]
+        );
+    }
+
+    protected function werckerProperties()
+    {
+        return array(
+            "name"             => "wercker",
+            "build_identifier" => $_SERVER["WERCKER_BUILD_ID"],
+            "build_url"        => $_SERVER["WERCKER_BUILD_URL"],
+            "branch"           => $_SERVER["WERCKER_GIT_BRANCH"],
+            "commit_sha"       => $_SERVER["WERCKER_GIT_COMMIT"]
         );
     }
 }
