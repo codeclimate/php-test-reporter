@@ -15,29 +15,16 @@ This package requires a user, but not necessarily a paid account, on
 Code Climate, so if you don't have one the first step is to signup at: 
 https://codeclimate.com.
 
-To install php-test-reporter with Composer first add the following to 
-your composer.json file:
+To install php-test-reporter with Composer run the following command.
 
-**composer.json**
-
-```javascript
-{
-  "require-dev": {
-    "codeclimate/php-test-reporter": "dev-master"
-  }
-}
+```shell
+composer require codeclimate/php-test-reporter --dev
 ```
 
-Then, run:
+This will get you the latest version of the reporter and install it. If you do want the master, untagged, version you may use the command below:
 
-```
-$ php composer.phar install --dev
-```
-
-If adding the test-reporter to an existing project, run:
-
-```
-$ php composer.phar update codeclimate/php-test-reporter --dev
+```shell
+composer require codeclimate/php-test-reporter:@dev --dev
 ```
 
 ## Usage
