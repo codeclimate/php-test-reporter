@@ -26,6 +26,8 @@ class ApiClient
             CURLOPT_HEADER => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POSTFIELDS => (string)$json,
+            CURLOPT_SSLCERT => realpath(__DIR__.'/../../../../cert.pem')
+
         ));
 
         $response = new \stdClass;
