@@ -7,7 +7,7 @@ class ApiClient
 
     public function __construct()
     {
-        $this->apiHost = "https://www.codeclimate.com";
+        $this->apiHost = "https://codeclimate.com";
 
         if (isset($_SERVER["CODECLIMATE_API_HOST"])) {
             $this->apiHost = $_SERVER["CODECLIMATE_API_HOST"];
