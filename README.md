@@ -110,6 +110,8 @@ after_script:
   - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
 ```
 
+Note: In the command above, you may need to change `bin/test-reporter` to `vendor/bin/test-reporter`, depending on your project's directory structure.
+
 More details can be found in [this issue][issue].
 
 [issue]: https://github.com/codeclimate/php-test-reporter/issues/3
