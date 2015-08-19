@@ -29,8 +29,8 @@ class CiInfo
             return $this->codeshipProperties();
         }
 
-        if (isset($_SERVER["BUILDBOX"])) {
-            return $this->buildboxProperties();
+        if (isset($_SERVER["BUILDKITE"])) {
+            return $this->buildkiteProperties();
         }
 
         if (isset($_SERVER["WERCKER"])) {
@@ -100,15 +100,15 @@ class CiInfo
         );
     }
 
-    protected function buildboxProperties()
+    protected function buildkiteProperties()
     {
         return array(
-            "name"             => "buildbox",
-            "build_identifier" => $_SERVER["BUILDBOX_BUILD_ID"],
-            "build_url"        => $_SERVER["BUILDBOX_BUILD_URL"],
-            "branch"           => $_SERVER["BUILDBOX_BRANCH"],
-            "commit_sha"       => $_SERVER["BUILDBOX_COMMIT"],
-            "pull_request"     => $_SERVER["BUILDBOX_PULL_REQUEST"]
+            "name"             => "buildkite",
+            "build_identifier" => $_SERVER["BUILDKITE_BUILD_ID"],
+            "build_url"        => $_SERVER["BUILDKITE_BUILD_URL"],
+            "branch"           => $_SERVER["BUILDKITE_BRANCH"],
+            "commit_sha"       => $_SERVER["BUILDKITE_COMMIT"],
+            "pull_request"     => $_SERVER["BUILDKITE_PULL_REQUEST"]
         );
     }
 
