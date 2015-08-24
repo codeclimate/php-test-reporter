@@ -71,7 +71,7 @@ class ApiClient
      *
      * @param \stdClass $response Standard object
      * @param string $body HTTP response contents
-     * @return \stcClass Populated class object
+     * @return \stdClass Populated class object
      */
     private function buildResponse($response, $body)
     {
