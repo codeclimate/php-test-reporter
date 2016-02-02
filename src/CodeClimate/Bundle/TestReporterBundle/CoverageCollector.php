@@ -3,8 +3,8 @@ namespace CodeClimate\Bundle\TestReporterBundle;
 
 use CodeClimate\Component\System\Git\GitCommand;
 use CodeClimate\Bundle\TestReporterBundle\Entity\JsonFile;
-use Contrib\Bundle\CoverallsV1Bundle\Api\Jobs;
-use Contrib\Bundle\CoverallsV1Bundle\Config\Configuration;
+use Satooshi\Bundle\CoverallsV1Bundle\Api\Jobs;
+use Satooshi\Bundle\CoverallsV1Bundle\Config\Configuration;
 
 class CoverageCollector
 {
@@ -20,7 +20,7 @@ class CoverageCollector
     {
         $rootDir = getcwd();
         $config = new Configuration();
-        $config->setSrcDir($rootDir);
+        $config->setRootDir($rootDir);
         $this->setCloverPaths($paths);
         foreach ($this->getCloverPaths() as $path) {
             if (file_exists($path)) {
