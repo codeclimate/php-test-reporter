@@ -4,7 +4,7 @@ namespace CodeClimate\Bundle\TestReporterBundle\Entity;
 use CodeClimate\Component\System\Git\GitCommand;
 use CodeClimate\Bundle\TestReporterBundle\Entity\CiInfo;
 use CodeClimate\Bundle\TestReporterBundle\Version;
-use Contrib\Bundle\CoverallsV1Bundle\Entity\JsonFile as SatooshiJsonFile;
+use Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile as SatooshiJsonFile;
 
 class JsonFile extends SatooshiJsonFile
 {
