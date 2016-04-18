@@ -53,9 +53,49 @@ class ApiClient
                 $response = $this->buildResponse($response, $raw_response);
             }
         } else {
+            $response = $this->sendWithCurl($url, $payload);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Send the given JSON as a request to the CodeClimate Server using cURL.
+     * Added as a backup if PHP Streams method fails (e.g. if allow_url_fopen is disabled).
+     *
+     * @param string $url The API end-point URL
+     * @param string $payload The request payload as a JSON-encoded string
+     * @return \stdClass Response object with (code, message, headers & body properties)
+     */
+    private function sendWithCurl($url, $payload)
+    {
+        $response = new \stdClass;
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_VERBOSE, true);
+        curl_setopt($curl, CURLOPT_HEADER, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt(
+            $curl,
+            CURLOPT_HTTPHEADER,
+            array(
+                'Host: codeclimate.com',
+                'Content-Type: application/json',
+                'User-Agent: Code Climate (PHP Test Reporter v'.Version::VERSION.')',
+                'Content-Length: '.strlen($payload)
+            )
+        );
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+        $raw_response = curl_exec($curl);
+
+        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        if (!empty($raw_response)) {
+            $response = $this->buildResponse($response, $raw_response);
+        } else {
             $error = error_get_last();
             preg_match('/([0-9]{3})/', $error['message'], $match);
-            $errorCode = (isset($match[1])) ? $match[1] : 500;
+            $errorCode = (isset($match[1])) ? $match[1] : ($status ? $status : 500);
 
             $response->code = $errorCode;
             $response->message = $error['message'];
