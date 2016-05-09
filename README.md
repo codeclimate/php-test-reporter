@@ -62,7 +62,7 @@ composer require codeclimate/php-test-reporter:@dev --dev
 
 - Generate coverage data to `build/logs/clover.xml`
 
-Add the following to phpunit.dist.xml:
+Add the following to phpunit.xml.dist:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
