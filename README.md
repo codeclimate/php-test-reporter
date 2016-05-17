@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/codeclimate/php-test-reporter.svg)](https://codeclimate.com/github/codeclimate/php-test-reporter) 
+[![Code Climate](https://codeclimate.com/github/codeclimate/php-test-reporter.svg)](https://codeclimate.com/github/codeclimate/php-test-reporter)
 [![Build Status](https://travis-ci.org/codeclimate/php-test-reporter.svg?branch=master)](https://travis-ci.org/codeclimate/php-test-reporter)
 
 # codeclimate-test-reporter
@@ -14,7 +14,7 @@ Code Climate - https://codeclimate.com
 
 Across the many different testing frameworks, setups, and environments, there are lots of variables at play. Before setting up test coverage, it's important to understand what we do and do not currently support:
 
-* **Default branch only:** We only support test coverage for your [default branch](http://docs.codeclimate.com/article/151-glossary-default-branch). Be sure to check out this branch before running your tests.
+* **Default branch only:** We only support test coverage for your [default branch](https://docs.codeclimate.com/docs/code-climate-glossary#default-branch). Be sure to check out this branch before running your tests.
 * **Single payload:** We currently only support a single test coverage payload per commit. If you run your tests in multiple steps, or via parallel tests, Code Climate will only process the first payload that we receive. If you are using a CI, be sure to check if you are running your tests in a parallel mode.
 
   **Note:** There is one exception to this rule. We've specifically built an integration with [Solano Labs](https://www.solanolabs.com/) to support parallel tests.
@@ -30,7 +30,7 @@ There are several requirements you'll need in order to use the PHP test reporter
 - [Xdebug](http://xdebug.org)
 - [Composer](http://getcomposer.org)
 
-The test reporter uses the [PHPUnit](http://phpunit.de) testing tool to generate [code coverage](http://en.wikipedia.org/wiki/Code_coverage) information. These results show how much of your application's code is being executed by your unit tests. PHPUnit can't generate this information on it's own though - it needs another tool, [Xdebug](http://xdebug.org). This is *not* included as a part of the PHPUnit (or PHP) install by default so you'll need to install it yourself.
+The test reporter uses the [PHPUnit](http://phpunit.de) testing tool to generate [code coverage](http://en.wikipedia.org/wiki/Code_coverage) information. These results show how much of your application's code is being executed by your unit tests. PHPUnit can't generate this information on its own though - it needs another tool, [Xdebug](http://xdebug.org). This is *not* included as a part of the PHPUnit (or PHP) install by default so you'll need to install it yourself.
 
 Xdebug is installed as an extension to PHP, not a library. You can find more information about installing the tool via PECL [on the project website](http://xdebug.org/docs/install).
 
