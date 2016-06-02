@@ -1,4 +1,6 @@
 build/
 vendor/
+box.phar
 composer.lock
 composer.phar
+test-reporter.phar
