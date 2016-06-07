@@ -1,5 +1,5 @@
 {
-  "alias": "test-reporter.phar",
+  "alias": "codeclimate-test-reporter.phar",
   "chmod": "0755",
   "directories": ["src"],
   "compactors": [
@@ -18,6 +18,6 @@
   ],
   "git-version": "package_version",
   "main": "composer/bin/test-reporter",
-  "output": "test-reporter.phar",
+  "output": "codeclimate-test-reporter.phar",
   "stub": true
 }
