@@ -1,37 +1,57 @@
 {
-    "name": "codeclimate/php-test-reporter",
-    "description": "PHP client for reporting test coverage to Code Climate",
-    "keywords": ["codeclimate", "coverage"],
-    "homepage": "https://github.com/codeclimate/php-test-reporter",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Code Climate",
-            "email": "hello@codeclimate.com",
-            "homepage": "https://codeclimate.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3",
-        "ext-curl": "*",
-        "satooshi/php-coveralls": "1.0.*",
-        "symfony/console": ">=2.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "3.7.*@stable",
-        "ext-xdebug": "*"
-    },
-    "autoload": {
-        "psr-0": {
-          "CodeClimate\\Component": "src/",
-          "CodeClimate\\Bundle": "src/"
-        }
-    },
-    "bin": ["composer/bin/test-reporter"],
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.3.x-dev"
-       }
-    }
+	"name": "codeclimate/php-test-reporter",
+	"description": "PHP client for reporting test coverage to Code Climate",
+	"keywords": [
+		"codeclimate",
+		"coverage"
+	],
+	"homepage": "https://github.com/codeclimate/php-test-reporter",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Code Climate",
+			"email": "hello@codeclimate.com",
+			"homepage": "https://codeclimate.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3",
+		"ext-curl": "*",
+		"satooshi/php-coveralls": "^1.0",
+		"symfony/console": "^2.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "3.7.*@stable",
+		"ext-xdebug": "*",
+		"tm/tooly-composer-script": "^1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"CodeClimate\\PhpTestReporter\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"CodeClimate\\PhpTestReporter\\Tests\\": "tests/"
+		}
+	},
+	"bin": [
+		"composer/bin/test-reporter"
+	],
+	"scripts": {
+		"post-install-cmd": "Tooly\\ScriptHandler::installPharTools",
+		"post-update-cmd": "Tooly\\ScriptHandler::installPharTools"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.3.x-dev"
+		},
+		"tools": {
+			"box": {
+				"url": "https://github.com/box-project/box2/releases/download/2.7.2/box-2.7.2.phar",
+				"only-dev": true
+			}
+		}
+	}
 }

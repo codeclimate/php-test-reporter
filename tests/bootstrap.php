@@ -1,4 +1,3 @@
 <?php
 
-$loader = require realpath(__DIR__ . '/../vendor/autoload.php');
-$loader->add('CodeClimate', __DIR__);
+require(__DIR__ . '/../vendor/autoload.php');

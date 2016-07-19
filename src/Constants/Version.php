@@ -1,5 +1,6 @@
 <?php
-namespace CodeClimate\Bundle\TestReporterBundle;
+
+namespace CodeClimate\PhpTestReporter\Constants;
 
 /**
  * TestReporterBundle version.

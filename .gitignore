@@ -1,6 +1,7 @@
+.idea/
+.vagrant/
+Vagrantfile
 build/
 vendor/
-box.phar
-codeclimate-test-reporter.phar
 composer.lock
 composer.phar
