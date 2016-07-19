@@ -28,7 +28,5 @@ if (!defined('PHP_TEST_REPORTER_COMPOSER_INSTALL')) {
     );
 }
 
-$rootDir = realpath(dirname(PHP_TEST_REPORTER_COMPOSER_INSTALL) . '/..');
-
-$app = new Application($rootDir, 'Code Climate PHP Test Reporter', Version::VERSION);
+$app = new Application('Code Climate PHP Test Reporter', Version::VERSION);
 $app->run();
