@@ -5,6 +5,8 @@ engines:
     config:
       languages:
       - php
+  phpcodesniffer:
+    enabled: true
   phpmd:
     enabled: true
     checks:
