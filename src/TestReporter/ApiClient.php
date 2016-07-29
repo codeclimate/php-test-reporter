@@ -49,13 +49,13 @@ class ApiClient
 
 		if ( $stream = @fopen( $url, 'r', false, $context ) )
 		{
-			$meta         = stream_get_meta_data( $stream );
-			$raw_response = implode( "\r\n", $meta['wrapper_data'] ) . "\r\n\r\n" . stream_get_contents( $stream );
+			$meta        = stream_get_meta_data( $stream );
+			$rawResponse = implode( "\r\n", $meta['wrapper_data'] ) . "\r\n\r\n" . stream_get_contents( $stream );
 			fclose( $stream );
 
-			if ( !empty($raw_response) )
+			if ( !empty($rawResponse) )
 			{
-				$response = $this->buildResponse( $response, $raw_response );
+				$response = $this->buildResponse( $response, $rawResponse );
 			}
 		}
 		else
@@ -94,12 +94,12 @@ class ApiClient
 		);
 		curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, 'POST' );
 		curl_setopt( $curl, CURLOPT_POSTFIELDS, $payload );
-		$raw_response = curl_exec( $curl );
+		$rawResponse = curl_exec( $curl );
 
 		$status = curl_getinfo( $curl, CURLINFO_HTTP_CODE );
-		if ( !empty($raw_response) )
+		if ( !empty($rawResponse) )
 		{
-			$response = $this->buildResponse( $response, $raw_response );
+			$response = $this->buildResponse( $response, $rawResponse );
 		}
 		else
 		{
