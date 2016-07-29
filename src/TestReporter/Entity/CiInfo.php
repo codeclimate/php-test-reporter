@@ -1,5 +1,5 @@
 <?php
-namespace CodeClimate\Bundle\TestReporterBundle\Entity;
+namespace CodeClimate\PhpTestReporter\TestReporter\Entity;
 
 class CiInfo
 {
@@ -37,89 +37,89 @@ class CiInfo
             return $this->werckerProperties();
         }
 
-        return array();
+        return [ ];
     }
 
     protected function travisProperties()
     {
-        return array(
+        return [
             "name"             => "travis-ci",
             "branch"           => $_SERVER["TRAVIS_BRANCH"],
             "build_identifier" => $_SERVER["TRAVIS_JOB_ID"],
-            "pull_request"     => $_SERVER["TRAVIS_PULL_REQUEST"]
-        );
+            "pull_request"     => $_SERVER["TRAVIS_PULL_REQUEST"],
+        ];
     }
 
     protected function circleProperties()
     {
-        return array(
+        return [
             "name"             => "circleci",
             "build_identifier" => $_SERVER["CIRCLE_BUILD_NUM"],
             "branch"           => $_SERVER["CIRCLE_BRANCH"],
-            "commit_sha"       => $_SERVER["CIRCLE_SHA1"]
-        );
+            "commit_sha"       => $_SERVER["CIRCLE_SHA1"],
+        ];
     }
 
     protected function semaphoreProperties()
     {
-        return array(
+        return [
             "name"             => "semaphore",
             "branch"           => $_SERVER["BRANCH_NAME"],
-            "build_identifier" => $_SERVER["SEMAPHORE_BUILD_NUMBER"]
-        );
+            "build_identifier" => $_SERVER["SEMAPHORE_BUILD_NUMBER"],
+        ];
     }
 
     protected function jenkinsProperties()
     {
-        return array(
+        return [
             "name"             => "jenkins",
             "build_identifier" => $_SERVER["BUILD_NUMBER"],
             "build_url"        => $_SERVER["BUILD_URL"],
             "branch"           => $_SERVER["GIT_BRANCH"],
-            "commit_sha"       => $_SERVER["GIT_COMMIT"]
-        );
+            "commit_sha"       => $_SERVER["GIT_COMMIT"],
+        ];
     }
 
     protected function tddiumProperties()
     {
-        return array(
+        return [
             "name"             => "tddium",
             "build_identifier" => $_SERVER["TDDIUM_SESSION_ID"],
-            "worker_id"        => $_SERVER["TDDIUM_TID"]
-        );
+            "worker_id"        => $_SERVER["TDDIUM_TID"],
+        ];
     }
 
     protected function codeshipProperties()
     {
-        return array(
+        return [
             "name"             => "codeship",
             "build_identifier" => $_SERVER["CI_BUILD_NUMBER"],
             "build_url"        => $_SERVER["CI_BUILD_URL"],
             "branch"           => $_SERVER["CI_BRANCH"],
-            "commit_sha"       => $_SERVER["CI_COMMIT_ID"]
-        );
+            "commit_sha"       => $_SERVER["CI_COMMIT_ID"],
+        ];
     }
 
     protected function buildkiteProperties()
     {
-        return array(
+        return [
             "name"             => "buildkite",
             "build_identifier" => $_SERVER["BUILDKITE_BUILD_ID"],
             "build_url"        => $_SERVER["BUILDKITE_BUILD_URL"],
             "branch"           => $_SERVER["BUILDKITE_BRANCH"],
             "commit_sha"       => $_SERVER["BUILDKITE_COMMIT"],
-            "pull_request"     => $_SERVER["BUILDKITE_PULL_REQUEST"]
-        );
+            "pull_request"     => $_SERVER["BUILDKITE_PULL_REQUEST"],
+        ];
     }
 
     protected function werckerProperties()
     {
-        return array(
+        return [
             "name"             => "wercker",
             "build_identifier" => $_SERVER["WERCKER_BUILD_ID"],
             "build_url"        => $_SERVER["WERCKER_BUILD_URL"],
             "branch"           => $_SERVER["WERCKER_GIT_BRANCH"],
-            "commit_sha"       => $_SERVER["WERCKER_GIT_COMMIT"]
-        );
+            "commit_sha"       => $_SERVER["WERCKER_GIT_COMMIT"],
+        ];
     }
 }

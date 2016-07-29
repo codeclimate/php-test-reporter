@@ -1,10 +1,14 @@
 #!/usr/bin/env php
 <?php
 
-$files = array(
+namespace CodeClimate\PhpTestReporter;
+
+use CodeClimate\PhpTestReporter\Constants\Version;
+
+$files = [
     __DIR__ . '/../../vendor/autoload.php',
-    __DIR__ . '/../../../../autoload.php'
-);
+    __DIR__ . '/../../../../autoload.php',
+];
 
 foreach ($files as $file) {
     if (file_exists($file)) {
@@ -23,9 +27,6 @@ if (!defined('PHP_TEST_REPORTER_COMPOSER_INSTALL')) {
         'php composer.phar install' . PHP_EOL
     );
 }
-
-use CodeClimate\Bundle\TestReporterBundle\Version;
-use CodeClimate\Bundle\TestReporterBundle\Console\Application;
 
 $rootDir = realpath(dirname(PHP_TEST_REPORTER_COMPOSER_INSTALL) . '/..');
 

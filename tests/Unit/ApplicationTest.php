@@ -1,6 +1,7 @@
 <?php
-namespace CodeClimate\Bundle\TestReporterBundle\Console;
+namespace CodeClimate\PhpTestReporter\Tests\Unit;
 
+use CodeClimate\PhpTestReporter\Application;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
 class ApplicationTest extends \PHPUnit_Framework_TestCase
@@ -11,7 +12,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->srcDir = realpath(__DIR__ . '/../../../../..');
+        $this->srcDir = realpath(__DIR__ . '/../../../../CodeClimateTestReporter');
         $this->setupProject();
         $this->setupEnvironment();
     }
@@ -25,18 +26,18 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         $app->setAutoExit(false);
         $tester = new ApplicationTester($app);
 
-        $status = $tester->run(array('--stdout' => true));
+        $status = $tester->run([ '--stdout' => true ]);
 
         $this->assertEquals(0, $status);
     }
 
     private function setupProject()
     {
-        shell_exec("rm -rf ".static::PROJECT_DIR);
-        mkdir(static::PROJECT_DIR."/build/logs", 0755, true);
-        copy("tests/files/test.php", static::PROJECT_DIR."/test.php");
-        copy("tests/files/test.php", static::PROJECT_DIR."/test2.php");
-        copy("tests/files/clover.xml", static::PROJECT_DIR."/build/logs/clover.xml");
+        shell_exec("rm -rf " . static::PROJECT_DIR);
+        mkdir(static::PROJECT_DIR . "/build/logs", 0755, true);
+        copy("tests/files/test.php", static::PROJECT_DIR . "/test.php");
+        copy("tests/files/test.php", static::PROJECT_DIR . "/test2.php");
+        copy("tests/files/clover.xml", static::PROJECT_DIR . "/build/logs/clover.xml");
 
         chdir(static::PROJECT_DIR);
 
@@ -49,9 +50,9 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
     private function setupEnvironment()
     {
         $_SERVER["CODECLIMATE_REPO_TOKEN"] = 'abc123';
-        $_SERVER["TRAVIS"] = "1";
-        $_SERVER["TRAVIS_BRANCH"] = "master";
-        $_SERVER["TRAVIS_JOB_ID"] = "1";
-        $_SERVER["TRAVIS_PULL_REQUEST"] = "fb-feature";
+        $_SERVER["TRAVIS"]                 = "1";
+        $_SERVER["TRAVIS_BRANCH"]          = "master";
+        $_SERVER["TRAVIS_JOB_ID"]          = "1";
+        $_SERVER["TRAVIS_PULL_REQUEST"]    = "fb-feature";
     }
 }

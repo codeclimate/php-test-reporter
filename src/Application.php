@@ -1,20 +1,18 @@
 <?php
-namespace CodeClimate\Bundle\TestReporterBundle\Console;
+namespace CodeClimate\PhpTestReporter;
 
-use CodeClimate\Bundle\TestReporterBundle\Command\TestReporterCommand;
+use CodeClimate\PhpTestReporter\ConsoleCommands\TestReporterCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
  * Coveralls API application.
- *
  * @author Kitamura Satoshi <with.no.parachute@gmail.com>
  */
 class Application extends BaseApplication
 {
     /**
      * Path to project root directory.
-     *
      * @var string
      */
     private $rootDir;
@@ -37,7 +35,6 @@ class Application extends BaseApplication
 
     /**
      * {@inheritdoc}
-     *
      * @see \Symfony\Component\Console\Application::getCommandName()
      */
     protected function getCommandName(InputInterface $input)
@@ -47,14 +44,13 @@ class Application extends BaseApplication
 
     /**
      * {@inheritdoc}
-     *
      * @see \Symfony\Component\Console\Application::getDefaultCommands()
      */
     protected function getDefaultCommands()
     {
         // Keep the core default commands to have the HelpCommand
         // which is used when using the --help option
-        $defaultCommands = parent::getDefaultCommands();
+        $defaultCommands   = parent::getDefaultCommands();
         $defaultCommands[] = $this->createTestReporterCommand();
 
         return $defaultCommands;
@@ -62,8 +58,7 @@ class Application extends BaseApplication
 
     /**
      * Create TestReporterCommand.
-     *
-     * @return \CodeClimate\Bundle\TestReporterBundle\Command\TestReporterCommand
+     * @return TestReporterCommand
      */
     protected function createTestReporterCommand()
     {
@@ -77,7 +72,6 @@ class Application extends BaseApplication
 
     /**
      * {@inheritdoc}
-     *
      * @see \Symfony\Component\Console\Application::getDefinition()
      */
     public function getDefinition()

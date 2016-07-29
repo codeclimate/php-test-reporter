@@ -1,8 +1,9 @@
 <?php
-namespace CodeClimate\Bundle\TestReporterBundle\Command;
 
-use CodeClimate\Bundle\TestReporterBundle\CoverageCollector;
-use CodeClimate\Bundle\TestReporterBundle\ApiClient;
+namespace CodeClimate\PhpTestReporter\ConsoleCommands;
+
+use CodeClimate\PhpTestReporter\TestReporter\ApiClient;
+use CodeClimate\PhpTestReporter\TestReporter\CoverageCollector;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,51 +16,48 @@ class TestReporterCommand extends Command
 {
     /**
      * Path to project root directory.
-     *
      * @var string
      */
     protected $rootDir;
 
     /**
      * {@inheritdoc}
-     *
      * @see \Symfony\Component\Console\Command\Command::configure()
      */
     protected function configure()
     {
         $this
-        ->setName('test-reporter')
-        ->setDescription('Code Climate PHP Test Reporter')
-        ->addOption(
-            'stdout',
-            null,
-            InputOption::VALUE_NONE,
-            'Do not upload, print JSON payload to stdout'
-        )
-        ->addOption(
-            'coverage-report',
-            null,
-            InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-            'Location of clover style CodeCoverage report, as produced by PHPUnit\'s --coverage-clover option.',
-            array('build/logs/clover.xml')
-        );
+            ->setName('test-reporter')
+            ->setDescription('Code Climate PHP Test Reporter')
+            ->addOption(
+                'stdout',
+                null,
+                InputOption::VALUE_NONE,
+                'Do not upload, print JSON payload to stdout'
+            )
+            ->addOption(
+                'coverage-report',
+                null,
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'Location of clover style CodeCoverage report, as produced by PHPUnit\'s --coverage-clover option.',
+                [ 'build/logs/clover.xml' ]
+            );
     }
 
     /**
      * {@inheritdoc}
-     *
      * @see \Symfony\Component\Console\Command\Command::execute()
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $ret = 0;
+        $ret       = 0;
         $collector = new CoverageCollector($input->getOption('coverage-report'));
-        $json = $collector->collectAsJson();
+        $json      = $collector->collectAsJson();
 
         if ($input->getOption('stdout')) {
             $output->writeln((string)$json);
         } else {
-            $client = new ApiClient();
+            $client   = new ApiClient();
             $response = $client->send($json);
             switch ($response->code) {
                 case 200:
@@ -72,7 +70,7 @@ class TestReporterCommand extends Command
                     break;
 
                 default:
-                    $output->writeln("Unexpected response: ".$response->code." ".$response->message);
+                    $output->writeln("Unexpected response: " . $response->code . " " . $response->message);
                     $output->writeln($response->body);
                     $ret = 1;
                     break;

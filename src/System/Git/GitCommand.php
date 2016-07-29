@@ -1,5 +1,5 @@
 <?php
-namespace CodeClimate\Component\System\Git;
+namespace CodeClimate\PhpTestReporter\System\Git;
 
 use Satooshi\Component\System\SystemCommand;
 

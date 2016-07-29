@@ -1,8 +1,7 @@
 <?php
-namespace CodeClimate\Bundle\TestReporterBundle;
+namespace CodeClimate\PhpTestReporter\TestReporter;
 
-use CodeClimate\Component\System\Git\GitCommand;
-use CodeClimate\Bundle\TestReporterBundle\Entity\JsonFile;
+use CodeClimate\PhpTestReporter\TestReporter\Entity\JsonFile;
 use Satooshi\Bundle\CoverallsV1Bundle\Api\Jobs;
 use Satooshi\Bundle\CoverallsV1Bundle\Config\Configuration;
 
@@ -14,12 +13,12 @@ class CoverageCollector
      * Array that holds list of relative paths to Clover XML files
      * @var array
      */
-    protected $cloverPaths = array();
+    protected $cloverPaths = [ ];
 
     public function __construct($paths)
     {
         $rootDir = getcwd();
-        $config = new Configuration();
+        $config  = new Configuration();
         $config->setRootDir($rootDir);
         $this->setCloverPaths($paths);
         foreach ($this->getCloverPaths() as $path) {
@@ -35,6 +34,7 @@ class CoverageCollector
 
     /**
      * Set a list of Clover XML paths
+     *
      * @param array $paths Array of relative paths to Clovers XML files
      */
     public function setCloverPaths($paths)
@@ -50,6 +50,7 @@ class CoverageCollector
     {
         return $this->cloverPaths;
     }
+
     public function collectAsJson()
     {
         $cloverJsonFile = $this->api->collectCloverXml()->getJsonFile();

@@ -1,0 +1,27 @@
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - php
+  phpcodesniffer:
+    enabled: true
+  phpmd:
+    enabled: true
+    checks:
+      CleanCode/ElseExpression:
+        enabled: false
+      Controversial/Superglobals:
+        enabled: false
+    exclude_fingerprints:
+    # High complexity in CiInfo#toArray()
+    - 8f1ff5077ea52a5fee818bde73a0dbb7
+    - efc665f3aa41cbbd0bbd0ec9c945a453
+ratings:
+  paths:
+  - "**.inc"
+  - "**.module"
+  - "**.php"
+exclude_paths:
+- tests/
