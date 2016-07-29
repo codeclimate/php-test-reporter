@@ -9,10 +9,6 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-env:
-  global:
-    secure: Yc+Xohkr/iEUU7FCQuSLXAE9ywNW9g6CfrM1Ki0Hl+fS15F3AXT7dFY8EyCJ4dP1/oI0dBmwrGWrltXV0XWIjGV1Ms3tefCgQpBBAqwT+hImzVP3RbpZW8Iyo2d0VgiDemQF1LWYD/pKu6d8WljTnv5D77NIMdEJjQ0uzeTLWdw=
-
 before_install:
   - composer self-update
 
