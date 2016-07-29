@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class Application extends BaseApplication
 {
-	// internal method
+    // internal method
 
     /**
      * {@inheritdoc}
@@ -36,13 +36,13 @@ class Application extends BaseApplication
         return $defaultCommands;
     }
 
-	/**
-	 * Create TestReporterCommand.
-	 * @return TestReporterCommand
-	 */
-	protected function createTestReporterCommand()
-	{
-		$command = new TestReporterCommand();
+    /**
+     * Create TestReporterCommand.
+     * @return TestReporterCommand
+     */
+    protected function createTestReporterCommand()
+    {
+        $command = new TestReporterCommand();
 
         return $command;
     }

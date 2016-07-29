@@ -20,7 +20,7 @@ class TestReporterCommand extends Command
      */
     protected function configure()
     {
-		$this
+        $this
             ->setName('test-reporter')
             ->setDescription('Code Climate PHP Test Reporter')
             ->addOption(
@@ -72,5 +72,5 @@ class TestReporterCommand extends Command
         }
 
         return $ret;
-	}
+    }
 }
