@@ -5,43 +5,35 @@ class CiInfo
 {
     public function toArray()
     {
-        if ( isset($_SERVER["TRAVIS"]) )
-        {
+        if (isset($_SERVER["TRAVIS"])) {
             return $this->travisProperties();
         }
 
-        if ( isset($_SERVER["CIRCLECI"]) )
-        {
+        if (isset($_SERVER["CIRCLECI"])) {
             return $this->circleProperties();
         }
 
-        if ( isset($_SERVER["SEMAPHORE"]) )
-        {
+        if (isset($_SERVER["SEMAPHORE"])) {
             return $this->semaphoreProperties();
         }
 
-        if ( isset($_SERVER["JENKINS_URL"]) )
-        {
+        if (isset($_SERVER["JENKINS_URL"])) {
             return $this->jenkinsProperties();
         }
 
-        if ( isset($_SERVER["TDDIUM"]) )
-        {
+        if (isset($_SERVER["TDDIUM"])) {
             return $this->tddiumProperties();
         }
 
-        if ( isset($_SERVER["CI_NAME"]) && preg_match( '/codeship/i', $_SERVER["CI_NAME"] ) )
-        {
+        if (isset($_SERVER["CI_NAME"]) && preg_match('/codeship/i', $_SERVER["CI_NAME"])) {
             return $this->codeshipProperties();
         }
 
-        if ( isset($_SERVER["BUILDKITE"]) )
-        {
+        if (isset($_SERVER["BUILDKITE"])) {
             return $this->buildkiteProperties();
         }
 
-        if ( isset($_SERVER["WERCKER"]) )
-        {
+        if (isset($_SERVER["WERCKER"])) {
             return $this->werckerProperties();
         }
 

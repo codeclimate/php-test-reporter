@@ -27,8 +27,8 @@ class TestReporterCommand extends Command
     protected function configure()
     {
         $this
-            ->setName( 'test-reporter' )
-            ->setDescription( 'Code Climate PHP Test Reporter' )
+            ->setName('test-reporter')
+            ->setDescription('Code Climate PHP Test Reporter')
             ->addOption(
                 'stdout',
                 null,
@@ -48,34 +48,30 @@ class TestReporterCommand extends Command
      * {@inheritdoc}
      * @see \Symfony\Component\Console\Command\Command::execute()
      */
-    protected function execute( InputInterface $input, OutputInterface $output )
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $ret       = 0;
-        $collector = new CoverageCollector( $input->getOption( 'coverage-report' ) );
+        $collector = new CoverageCollector($input->getOption('coverage-report'));
         $json      = $collector->collectAsJson();
 
-        if ( $input->getOption( 'stdout' ) )
-        {
-            $output->writeln( (string)$json );
-        }
-        else
-        {
+        if ($input->getOption('stdout')) {
+            $output->writeln((string)$json);
+        } else {
             $client   = new ApiClient();
-            $response = $client->send( $json );
-            switch ( $response->code )
-            {
+            $response = $client->send($json);
+            switch ($response->code) {
                 case 200:
-                    $output->writeln( "Test coverage data sent." );
+                    $output->writeln("Test coverage data sent.");
                     break;
 
                 case 401:
-                    $output->writeln( "Invalid CODECLIMATE_REPO_TOKEN." );
+                    $output->writeln("Invalid CODECLIMATE_REPO_TOKEN.");
                     $ret = 1;
                     break;
 
                 default:
-                    $output->writeln( "Unexpected response: " . $response->code . " " . $response->message );
-                    $output->writeln( $response->body );
+                    $output->writeln("Unexpected response: " . $response->code . " " . $response->message);
+                    $output->writeln($response->body);
                     $ret = 1;
                     break;
             }
@@ -93,7 +89,7 @@ class TestReporterCommand extends Command
      *
      * @return void
      */
-    public function setRootDir( $rootDir )
+    public function setRootDir($rootDir)
     {
         $this->rootDir = $rootDir;
     }

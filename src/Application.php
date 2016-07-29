@@ -24,11 +24,11 @@ class Application extends BaseApplication
      * @param string $name    The name of the application
      * @param string $version The version of the application
      */
-    public function __construct( $rootDir, $name = 'UNKNOWN', $version = 'UNKNOWN' )
+    public function __construct($rootDir, $name = 'UNKNOWN', $version = 'UNKNOWN')
     {
         $this->rootDir = $rootDir;
 
-        parent::__construct( $name, $version );
+        parent::__construct($name, $version);
     }
 
     // internal method
@@ -37,7 +37,7 @@ class Application extends BaseApplication
      * {@inheritdoc}
      * @see \Symfony\Component\Console\Application::getCommandName()
      */
-    protected function getCommandName( InputInterface $input )
+    protected function getCommandName(InputInterface $input)
     {
         return 'test-reporter';
     }
@@ -63,7 +63,7 @@ class Application extends BaseApplication
     protected function createTestReporterCommand()
     {
         $command = new TestReporterCommand();
-        $command->setRootDir( $this->rootDir );
+        $command->setRootDir($this->rootDir);
 
         return $command;
     }

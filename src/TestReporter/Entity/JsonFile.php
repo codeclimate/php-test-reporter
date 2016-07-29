@@ -23,7 +23,7 @@ class JsonFile extends SatooshiJsonFile
 
     public function getRunAt()
     {
-        return strtotime( parent::getRunAt() );
+        return strtotime(parent::getRunAt());
     }
 
     public function getRepoToken()
@@ -61,13 +61,13 @@ class JsonFile extends SatooshiJsonFile
     {
         $sourceFiles = [ ];
 
-        foreach ( $this->getSourceFiles() as $sourceFile )
-        {
+        foreach ($this->getSourceFiles() as $sourceFile) {
             array_push(
-                $sourceFiles, [
+                $sourceFiles,
+                [
                     "name"     => $sourceFile->getName(),
-                    "coverage" => json_encode( $sourceFile->getCoverage() ),
-                    "blob_id"  => $this->calculateBlobId( $sourceFile ),
+                    "coverage" => json_encode($sourceFile->getCoverage()),
+                    "blob_id"  => $this->calculateBlobId($sourceFile),
                 ]
             );
         }
@@ -75,11 +75,11 @@ class JsonFile extends SatooshiJsonFile
         return $sourceFiles;
     }
 
-    protected function calculateBlobId( SourceFile $sourceFile )
+    protected function calculateBlobId(SourceFile $sourceFile)
     {
-        $content = file_get_contents( $sourceFile->getPath() );
-        $header  = "blob " . strlen( $content ) . "\0";
+        $content = file_get_contents($sourceFile->getPath());
+        $header  = "blob " . strlen($content) . "\0";
 
-        return sha1( $header . $content );
+        return sha1($header . $content);
     }
 }

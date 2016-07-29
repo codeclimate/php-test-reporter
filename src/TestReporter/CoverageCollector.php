@@ -15,25 +15,21 @@ class CoverageCollector
      */
     protected $cloverPaths = [ ];
 
-    public function __construct( $paths )
+    public function __construct($paths)
     {
         $rootDir = getcwd();
         $config  = new Configuration();
-        $config->setRootDir( $rootDir );
-        $this->setCloverPaths( $paths );
-        foreach ( $this->getCloverPaths() as $path )
-        {
-            if ( file_exists( $path ) )
-            {
-                $config->addCloverXmlPath( $path );
-            }
-            else
-            {
-                $config->addCloverXmlPath( $rootDir . DIRECTORY_SEPARATOR . $path );
+        $config->setRootDir($rootDir);
+        $this->setCloverPaths($paths);
+        foreach ($this->getCloverPaths() as $path) {
+            if (file_exists($path)) {
+                $config->addCloverXmlPath($path);
+            } else {
+                $config->addCloverXmlPath($rootDir . DIRECTORY_SEPARATOR . $path);
             }
         }
 
-        $this->api = new Jobs( $config );
+        $this->api = new Jobs($config);
     }
 
     /**
@@ -41,7 +37,7 @@ class CoverageCollector
      *
      * @param array $paths Array of relative paths to Clovers XML files
      */
-    public function setCloverPaths( $paths )
+    public function setCloverPaths($paths)
     {
         $this->cloverPaths = $paths;
     }
@@ -60,11 +56,10 @@ class CoverageCollector
         $cloverJsonFile = $this->api->collectCloverXml()->getJsonFile();
 
         $jsonFile = new JsonFile();
-        $jsonFile->setRunAt( $cloverJsonFile->getRunAt() );
+        $jsonFile->setRunAt($cloverJsonFile->getRunAt());
 
-        foreach ( $cloverJsonFile->getSourceFiles() as $sourceFile )
-        {
-            $jsonFile->addSourceFile( $sourceFile );
+        foreach ($cloverJsonFile->getSourceFiles() as $sourceFile) {
+            $jsonFile->addSourceFile($sourceFile);
         }
 
         return $jsonFile;
