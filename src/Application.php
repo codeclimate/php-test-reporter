@@ -11,26 +11,6 @@ use Symfony\Component\Console\Input\InputInterface;
  */
 class Application extends BaseApplication
 {
-    /**
-     * Path to project root directory.
-     * @var string
-     */
-    private $rootDir;
-
-    /**
-     * Constructor.
-     *
-     * @param string $rootDir Path to project root directory.
-     * @param string $name    The name of the application
-     * @param string $version The version of the application
-     */
-    public function __construct($rootDir, $name = 'UNKNOWN', $version = 'UNKNOWN')
-    {
-        $this->rootDir = $rootDir;
-
-        parent::__construct($name, $version);
-    }
-
     // internal method
 
     /**
@@ -63,7 +43,6 @@ class Application extends BaseApplication
     protected function createTestReporterCommand()
     {
         $command = new TestReporterCommand();
-        $command->setRootDir($this->rootDir);
 
         return $command;
     }

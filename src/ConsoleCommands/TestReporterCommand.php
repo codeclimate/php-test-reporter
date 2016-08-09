@@ -15,12 +15,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 class TestReporterCommand extends Command
 {
     /**
-     * Path to project root directory.
-     * @var string
-     */
-    protected $rootDir;
-
-    /**
      * {@inheritdoc}
      * @see \Symfony\Component\Console\Command\Command::configure()
      */
@@ -78,19 +72,5 @@ class TestReporterCommand extends Command
         }
 
         return $ret;
-    }
-
-    // accessor
-
-    /**
-     * Set root directory.
-     *
-     * @param string $rootDir Path to project root directory.
-     *
-     * @return void
-     */
-    public function setRootDir($rootDir)
-    {
-        $this->rootDir = $rootDir;
     }
 }
