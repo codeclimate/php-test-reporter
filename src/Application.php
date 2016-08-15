@@ -1,7 +1,7 @@
 <?php
 namespace CodeClimate\PhpTestReporter;
 
-use CodeClimate\PhpTestReporter\ConsoleCommands\TestReporterCommand;
+use CodeClimate\PhpTestReporter\ConsoleCommands\UploadCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -19,7 +19,7 @@ class Application extends BaseApplication
      */
     protected function getCommandName(InputInterface $input)
     {
-        return 'test-reporter';
+        return 'upload';
     }
 
     /**
@@ -31,18 +31,18 @@ class Application extends BaseApplication
         // Keep the core default commands to have the HelpCommand
         // which is used when using the --help option
         $defaultCommands   = parent::getDefaultCommands();
-        $defaultCommands[] = $this->createTestReporterCommand();
+        $defaultCommands[] = $this->createUploadCommand();
 
         return $defaultCommands;
     }
 
     /**
-     * Create TestReporterCommand.
-     * @return TestReporterCommand
+     * Create UploadCommand.
+     * @return UploadCommand
      */
-    protected function createTestReporterCommand()
+    protected function createUploadCommand()
     {
-        $command = new TestReporterCommand();
+        $command = new UploadCommand('upload');
 
         return $command;
     }

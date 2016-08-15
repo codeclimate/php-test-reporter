@@ -46,16 +46,27 @@ This package requires a user, but not necessarily a paid account, on
 Code Climate, so if you don't have one the first step is to signup at:
 https://codeclimate.com.
 
+### Via composer
+
 To install php-test-reporter with Composer run the following command.
 
 ```shell
-composer require codeclimate/php-test-reporter --dev
+$ composer require codeclimate/php-test-reporter --dev
 ```
 
 This will get you the latest version of the reporter and install it. If you do want the master, untagged, version you may use the command below:
 
 ```shell
-composer require codeclimate/php-test-reporter:@dev --dev
+$ composer require codeclimate/php-test-reporter:@dev --dev
+```
+
+### As PHAR tool
+
+Checkout the [latest release here](https://github.com/codeclimate/php-test-reporter/releases) and replace `X.X.X` with the latest version.
+
+```shell
+$ RELEASE=X.X.X
+$ wget -c "https://github.com/codeclimate/php-test-reporter/releases/download/$RELEASE/codeclimate-test-reporter.phar"
 ```
 
 ## Usage
@@ -77,15 +88,19 @@ Add the following to phpunit.xml.dist:
 
 Or invoke `phpunit` as follows:
 
-```
+```shell
 $ phpunit --coverage-clover build/logs/clover.xml
 ```
 
 - Specifying your repo token as an environment variable, invoke the
   test-reporter:
 
-```
+```shell
 $ CODECLIMATE_REPO_TOKEN="..." vendor/bin/test-reporter
+
+# ... or via PHAR ...
+
+$ CODECLIMATE_REPO_TOKEN="..." codeclimate-test-reporter.phar upload
 ```
 
 The `CODECLIMATE_REPO_TOKEN` value is provided after you add your repo

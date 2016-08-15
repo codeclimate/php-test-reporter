@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Test reporter command
  */
-class TestReporterCommand extends Command
+class UploadCommand extends Command
 {
     /**
      * {@inheritdoc}
@@ -21,8 +21,7 @@ class TestReporterCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('test-reporter')
-            ->setDescription('Code Climate PHP Test Reporter')
+            ->setDescription('Uploads test report to code climate')
             ->addOption(
                 'stdout',
                 null,
