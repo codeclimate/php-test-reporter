@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CH
 
 ## [Unreleased]
 
+(nothing yet)
+
+## v0.4.0
+
 ### Added
 
 - Executable .phar file for download
@@ -13,4 +17,4 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CH
 - `rollback` command (PHAR only)
 - [Installation / Usage](./README.md) / [Distribution instructions](./DEVELOPING.md) for the PHAR tool
 
-[Unreleased]: https://github.com/codeclimate/php-test-reporter/compare/v0.3.2...HEAD
+[Unreleased]: https://github.com/codeclimate/php-test-reporter/compare/v0.4.0...HEAD
