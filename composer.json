@@ -15,17 +15,20 @@
             "homepage": "https://codeclimate.com"
         }
     ],
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "php": ">=5.3",
         "ext-curl": "*",
-        "satooshi/php-coveralls": "^1.0",
-        "symfony/console": "^2.0|^3.0",
+        "padraic/phar-updater": "^1.0",
         "psr/log": "^1.0",
-        "padraic/phar-updater": "^1.0"
+        "satooshi/php-coveralls": "^1.0",
+        "symfony/console": "^2.0|^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "3.7.*@stable",
         "ext-xdebug": "*",
+        "phpunit/phpunit": "3.7.*@stable",
         "tm/tooly-composer-script": "^1.0"
     },
     "autoload": {
