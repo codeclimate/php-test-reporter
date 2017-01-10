@@ -2,8 +2,12 @@ language: php
 
 sudo: false
 
-php:
-  - 5.5
+matrix:
+  include:
+    - php: 5.5
+      env: WITH_LOWEST=true
+    - php: 5.5
+      env: WITH_HIGHEST=true
 
 cache:
   directories:
@@ -13,7 +17,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --prefer-dist
+  - if [[ "$WITH_LOWEST" == "true" ]]; then composer update --prefer-lowest --prefer-dist; else composer install --prefer-dist; fi
 
 before_script:
   - git config --global user.email "travis-ci@codeclimate.com"
