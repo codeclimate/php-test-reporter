@@ -26,6 +26,8 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
+  - source .travis/xdebug.sh
+  - xdebug-disable
   - composer self-update
   - composer validate
 
@@ -37,7 +39,9 @@ before_script:
   - git config --global user.name "Travis CI"
 
 script:
+  - xdebug-enable
   - vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
+  - xdebug-disable
 
 after_script:
   - php composer/bin/test-reporter
