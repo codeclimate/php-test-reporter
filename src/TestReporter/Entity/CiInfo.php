@@ -25,7 +25,7 @@ class CiInfo
             return $this->tddiumProperties();
         }
 
-        if (isset($_SERVER["CI_NAME"]) && preg_match('/codeship/i', $_SERVER["CI_NAME"])) {
+        if (isset($_SERVER["CI_NAME"]) && false !== stripos($_SERVER["CI_NAME"], 'codeship')) {
             return $this->codeshipProperties();
         }
 
