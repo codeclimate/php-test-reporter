@@ -5,15 +5,13 @@ use CodeClimate\PhpTestReporter\Constants\Version;
 
 class ApiClient
 {
-    protected $apiHost;
+    protected $apiHost = "https://codeclimate.com";
 
     /**
      * Init the API client and set the hostname
      */
     public function __construct()
     {
-        $this->apiHost = "https://codeclimate.com";
-
         if (isset($_SERVER["CODECLIMATE_API_HOST"])) {
             $this->apiHost = $_SERVER["CODECLIMATE_API_HOST"];
         }
