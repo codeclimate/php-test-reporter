@@ -15,6 +15,7 @@ cache:
 
 before_install:
   - composer self-update
+  - composer validate
 
 install:
   - if [[ "$WITH_LOWEST" == "true" ]]; then composer update --prefer-lowest --prefer-dist; else composer install --prefer-dist; fi
