@@ -14,10 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class UploadCommand extends Command
 {
-    /**
-     * {@inheritdoc}
-     * @see \Symfony\Component\Console\Command\Command::configure()
-     */
     protected function configure()
     {
         $this
@@ -37,10 +33,6 @@ class UploadCommand extends Command
             );
     }
 
-    /**
-     * {@inheritdoc}
-     * @see \Symfony\Component\Console\Command\Command::execute()
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $collector = new CoverageCollector($input->getOption('coverage-report'));
