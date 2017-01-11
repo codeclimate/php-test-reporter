@@ -8,9 +8,9 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
     const PROJECT_DIR = "/tmp/php-test-reporter-example-project";
 
-    protected $srcDir;
+    private $srcDir;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->srcDir = realpath(__DIR__ . '/../../../../CodeClimateTestReporter');
         $this->setupProject();
