@@ -97,7 +97,7 @@ class ApiClient
             $response = $this->buildResponse($response, $rawResponse);
         } else {
             $error = error_get_last();
-            preg_match('/([0-9]{3})/', $error['message'], $match);
+            preg_match('/(\d{3})/', $error['message'], $match);
 
             $errorCode = 500;
 
