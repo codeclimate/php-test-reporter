@@ -27,7 +27,6 @@
         "symfony/console": "^2.0|^3.0"
     },
     "require-dev": {
-        "ext-xdebug": "*",
         "phpunit/phpunit": "3.7.*@stable",
         "tm/tooly-composer-script": "^1.0"
     },

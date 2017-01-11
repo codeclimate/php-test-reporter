@@ -24,7 +24,7 @@ before_script:
   - git config --global user.name "Travis CI"
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
 
 after_script:
   - php composer/bin/test-reporter
