@@ -27,7 +27,7 @@
         "symfony/console": "^2.0 || ^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "3.7.*@stable",
+        "phpunit/phpunit": "^4.8.31",
         "tm/tooly-composer-script": "^1.0"
     },
     "autoload": {
