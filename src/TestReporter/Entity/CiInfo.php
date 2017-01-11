@@ -3,6 +3,9 @@ namespace CodeClimate\PhpTestReporter\TestReporter\Entity;
 
 class CiInfo
 {
+    /**
+     * @return array
+     */
     public function toArray()
     {
         if (isset($_SERVER["TRAVIS"])) {
@@ -40,6 +43,9 @@ class CiInfo
         return [ ];
     }
 
+    /**
+     * @return array
+     */
     protected function travisProperties()
     {
         return [
@@ -50,6 +56,9 @@ class CiInfo
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function circleProperties()
     {
         return [
@@ -60,6 +69,9 @@ class CiInfo
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function semaphoreProperties()
     {
         return [
@@ -69,6 +81,9 @@ class CiInfo
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function jenkinsProperties()
     {
         return [
@@ -80,6 +95,9 @@ class CiInfo
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function tddiumProperties()
     {
         return [
@@ -89,6 +107,9 @@ class CiInfo
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function codeshipProperties()
     {
         return [
@@ -100,6 +121,9 @@ class CiInfo
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function buildkiteProperties()
     {
         return [
@@ -112,6 +136,9 @@ class CiInfo
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function werckerProperties()
     {
         return [

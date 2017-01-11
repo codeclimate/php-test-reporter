@@ -7,6 +7,9 @@ class GitCommand extends SystemCommand
 {
     protected $commandPath = 'git';
 
+    /**
+     * @return string
+     */
     public function getHead()
     {
         $command = $this->createCommand("log -1 --pretty=format:'%H'");
@@ -14,6 +17,9 @@ class GitCommand extends SystemCommand
         return current($this->executeCommand($command));
     }
 
+    /**
+     * @return string|null
+     */
     public function getBranch()
     {
         $command  = $this->createCommand("branch");
@@ -28,6 +34,9 @@ class GitCommand extends SystemCommand
         return null;
     }
 
+    /**
+     * @return int
+     */
     public function getCommittedAt()
     {
         $command = $this->createCommand("log -1 --pretty=format:'%ct'");

@@ -31,6 +31,9 @@ class JsonFile extends SatooshiJsonFile
         return $_SERVER["CODECLIMATE_REPO_TOKEN"];
     }
 
+    /**
+     * @return array
+     */
     protected function getEnvironment()
     {
         return [
@@ -39,6 +42,9 @@ class JsonFile extends SatooshiJsonFile
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function collectGitInfo()
     {
         $command = new GitCommand();
@@ -50,6 +56,9 @@ class JsonFile extends SatooshiJsonFile
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function collectCiServiceInfo()
     {
         $ciInfo = new CiInfo();
@@ -57,6 +66,9 @@ class JsonFile extends SatooshiJsonFile
         return $ciInfo->toArray();
     }
 
+    /**
+     * @return array
+     */
     protected function collectSourceFiles()
     {
         return array_map(function (SourceFile $sourceFile) {
@@ -68,6 +80,10 @@ class JsonFile extends SatooshiJsonFile
         }, $this->getSourceFiles());
     }
 
+    /**
+     * @param SourceFile $sourceFile
+     * @return string
+     */
     protected function calculateBlobId(SourceFile $sourceFile)
     {
         $content = file_get_contents($sourceFile->getPath());

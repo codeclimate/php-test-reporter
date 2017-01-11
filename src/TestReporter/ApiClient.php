@@ -5,6 +5,9 @@ use CodeClimate\PhpTestReporter\Constants\Version;
 
 class ApiClient
 {
+    /**
+     * @var string
+     */
     protected $apiHost = "https://codeclimate.com";
 
     /**

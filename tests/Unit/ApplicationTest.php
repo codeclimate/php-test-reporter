@@ -8,7 +8,10 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
     const PROJECT_DIR = "/tmp/php-test-reporter-example-project";
 
-    private $srcDir;
+    /**
+     * @var string
+     */
+    protected $srcDir;
 
     protected function setUp()
     {
