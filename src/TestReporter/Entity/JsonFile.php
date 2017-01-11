@@ -59,20 +59,13 @@ class JsonFile extends SatooshiJsonFile
 
     protected function collectSourceFiles()
     {
-        $sourceFiles = [ ];
-
-        foreach ($this->getSourceFiles() as $sourceFile) {
-            array_push(
-                $sourceFiles,
-                [
-                    "name"     => $sourceFile->getName(),
-                    "coverage" => json_encode($sourceFile->getCoverage()),
-                    "blob_id"  => $this->calculateBlobId($sourceFile),
-                ]
-            );
-        }
-
-        return $sourceFiles;
+        return array_map(function (SourceFile $sourceFile) {
+            return [
+                "name"     => $sourceFile->getName(),
+                "coverage" => json_encode($sourceFile->getCoverage()),
+                "blob_id"  => $this->calculateBlobId($sourceFile),
+            ];
+        }, $this->getSourceFiles());
     }
 
     protected function calculateBlobId(SourceFile $sourceFile)
