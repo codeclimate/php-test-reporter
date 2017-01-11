@@ -22,11 +22,11 @@ class ApiClient
     /**
      * Send the given JSON as a request to the CodeClimate Server
      *
-     * @param object $json JSON data
+     * @param Entity\JsonFile $json JSON data
      *
      * @return \stdClass Response object with (code, message, headers & body properties)
      */
-    public function send($json)
+    public function send(Entity\JsonFile $json)
     {
         $response = new \stdClass;
         $payload  = (string)$json;
