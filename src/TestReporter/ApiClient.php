@@ -97,7 +97,14 @@ class ApiClient
         } else {
             $error = error_get_last();
             preg_match('/([0-9]{3})/', $error['message'], $match);
-            $errorCode = isset($match[1]) ? $match[1] : ($status ? $status : 500);
+
+            $errorCode = 500;
+
+            if (isset($match[1])) {
+                $errorCode = $match[1];
+            } elseif ($status) {
+                $errorCode = $status;
+            }
 
             $response->code    = $errorCode;
             $response->message = $error['message'];
