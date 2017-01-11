@@ -42,9 +42,7 @@ class Application extends BaseApplication
      */
     protected function createUploadCommand()
     {
-        $command = new UploadCommand('upload');
-
-        return $command;
+        return new UploadCommand('upload');
     }
 
     // accessor
