@@ -43,33 +43,33 @@ class UploadCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $ret       = 0;
         $collector = new CoverageCollector($input->getOption('coverage-report'));
         $json      = $collector->collectAsJson();
 
         if ($input->getOption('stdout')) {
             $output->writeln((string)$json);
-        } else {
-            $client   = new ApiClient();
-            $response = $client->send($json);
-            switch ($response->code) {
-                case 200:
-                    $output->writeln("Test coverage data sent.");
-                    break;
 
-                case 401:
-                    $output->writeln("Invalid CODECLIMATE_REPO_TOKEN.");
-                    $ret = 1;
-                    break;
-
-                default:
-                    $output->writeln("Unexpected response: " . $response->code . " " . $response->message);
-                    $output->writeln($response->body);
-                    $ret = 1;
-                    break;
-            }
+            return 0;
         }
 
-        return $ret;
+        $client   = new ApiClient();
+        $response = $client->send($json);
+
+        if ($response->code == 200) {
+            $output->writeln("Test coverage data sent.");
+
+            return 0;
+        }
+
+        if ($response->code == 401) {
+            $output->writeln("Invalid CODECLIMATE_REPO_TOKEN.");
+
+            return 1;
+        }
+
+        $output->writeln("Unexpected response: " . $response->code . " " . $response->message);
+        $output->writeln($response->body);
+
+        return 1;
     }
 }
