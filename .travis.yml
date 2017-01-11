@@ -43,5 +43,5 @@ script:
   - vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
   - xdebug-disable
 
-after_script:
+after_success:
   - php composer/bin/test-reporter
