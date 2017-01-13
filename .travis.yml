@@ -2,6 +2,9 @@ language: php
 
 sudo: false
 
+env:
+  - CODECLIMATE_REPO_TOKEN=ae92eef60736379e896ec9fc26022cc578d4b1331a9845f74c28e37b3e067765
+
 matrix:
   include:
     - php: 5.5
