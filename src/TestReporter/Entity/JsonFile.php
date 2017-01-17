@@ -77,7 +77,7 @@ class JsonFile extends SatooshiJsonFile
                 "coverage" => json_encode($sourceFile->getCoverage()),
                 "blob_id"  => $this->calculateBlobId($sourceFile),
             ];
-        }, $this->getSourceFiles());
+        }, array_values($this->getSourceFiles()));
     }
 
     /**
