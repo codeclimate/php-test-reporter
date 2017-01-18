@@ -3,9 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com).
 
-## [Unreleased](https://github.com/codeclimate/php-test-reporter/compare/v0.4.1...HEAD)
+## [Unreleased](https://github.com/codeclimate/php-test-reporter/compare/v0.4.2...HEAD)
 
 (nothing yet)
+
+## [v0.4.2](https://github.com/codeclimate/php-test-reporter/compare/v0.4.1...v0.4.2)
+
+### Fixed
+
+- Fix bug in payload structure (@localheinz)
 
 ## [v0.4.1](https://github.com/codeclimate/php-test-reporter/compare/v0.4.0...v0.4.1)
 
