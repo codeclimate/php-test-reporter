@@ -22,8 +22,7 @@
             "exclude": [
                 "bin",
                 "tests",
-                "phpunit",
-                "tm"
+                "Tests"
             ],
             "in": [
                 "vendor"

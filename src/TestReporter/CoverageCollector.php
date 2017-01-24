@@ -16,7 +16,7 @@ class CoverageCollector
      * Array that holds list of relative paths to Clover XML files
      * @var array
      */
-    protected $cloverPaths = [ ];
+    protected $cloverPaths = array( );
 
     /**
      * CoverageCollector constructor.

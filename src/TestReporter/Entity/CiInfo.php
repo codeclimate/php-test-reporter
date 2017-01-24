@@ -40,7 +40,7 @@ class CiInfo
             return $this->werckerProperties();
         }
 
-        return [ ];
+        return array( );
     }
 
     /**
@@ -48,12 +48,12 @@ class CiInfo
      */
     protected function travisProperties()
     {
-        return [
+        return array(
             "name"             => "travis-ci",
             "branch"           => $_SERVER["TRAVIS_BRANCH"],
             "build_identifier" => $_SERVER["TRAVIS_JOB_ID"],
             "pull_request"     => $_SERVER["TRAVIS_PULL_REQUEST"],
-        ];
+        );
     }
 
     /**
@@ -61,12 +61,12 @@ class CiInfo
      */
     protected function circleProperties()
     {
-        return [
+        return array(
             "name"             => "circleci",
             "build_identifier" => $_SERVER["CIRCLE_BUILD_NUM"],
             "branch"           => $_SERVER["CIRCLE_BRANCH"],
             "commit_sha"       => $_SERVER["CIRCLE_SHA1"],
-        ];
+        );
     }
 
     /**
@@ -74,11 +74,11 @@ class CiInfo
      */
     protected function semaphoreProperties()
     {
-        return [
+        return array(
             "name"             => "semaphore",
             "branch"           => $_SERVER["BRANCH_NAME"],
             "build_identifier" => $_SERVER["SEMAPHORE_BUILD_NUMBER"],
-        ];
+        );
     }
 
     /**
@@ -86,13 +86,13 @@ class CiInfo
      */
     protected function jenkinsProperties()
     {
-        return [
+        return array(
             "name"             => "jenkins",
             "build_identifier" => $_SERVER["BUILD_NUMBER"],
             "build_url"        => $_SERVER["BUILD_URL"],
             "branch"           => $_SERVER["GIT_BRANCH"],
             "commit_sha"       => $_SERVER["GIT_COMMIT"],
-        ];
+        );
     }
 
     /**
@@ -100,11 +100,11 @@ class CiInfo
      */
     protected function tddiumProperties()
     {
-        return [
+        return array(
             "name"             => "tddium",
             "build_identifier" => $_SERVER["TDDIUM_SESSION_ID"],
             "worker_id"        => $_SERVER["TDDIUM_TID"],
-        ];
+        );
     }
 
     /**
@@ -112,13 +112,13 @@ class CiInfo
      */
     protected function codeshipProperties()
     {
-        return [
+        return array(
             "name"             => "codeship",
             "build_identifier" => $_SERVER["CI_BUILD_NUMBER"],
             "build_url"        => $_SERVER["CI_BUILD_URL"],
             "branch"           => $_SERVER["CI_BRANCH"],
             "commit_sha"       => $_SERVER["CI_COMMIT_ID"],
-        ];
+        );
     }
 
     /**
@@ -126,14 +126,14 @@ class CiInfo
      */
     protected function buildkiteProperties()
     {
-        return [
+        return array(
             "name"             => "buildkite",
             "build_identifier" => $_SERVER["BUILDKITE_BUILD_ID"],
             "build_url"        => $_SERVER["BUILDKITE_BUILD_URL"],
             "branch"           => $_SERVER["BUILDKITE_BRANCH"],
             "commit_sha"       => $_SERVER["BUILDKITE_COMMIT"],
             "pull_request"     => $_SERVER["BUILDKITE_PULL_REQUEST"],
-        ];
+        );
     }
 
     /**
@@ -141,12 +141,12 @@ class CiInfo
      */
     protected function werckerProperties()
     {
-        return [
+        return array(
             "name"             => "wercker",
             "build_identifier" => $_SERVER["WERCKER_BUILD_ID"],
             "build_url"        => $_SERVER["WERCKER_BUILD_URL"],
             "branch"           => $_SERVER["WERCKER_GIT_BRANCH"],
             "commit_sha"       => $_SERVER["WERCKER_GIT_COMMIT"],
-        ];
+        );
     }
 }

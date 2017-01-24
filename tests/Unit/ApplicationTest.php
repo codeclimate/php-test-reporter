@@ -29,7 +29,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
         $app->setAutoExit(false);
         $tester = new ApplicationTester($app);
 
-        $status = $tester->run([ '--stdout' => true ]);
+        $status = $tester->run(array( '--stdout' => true ));
 
         $this->assertEquals(0, $status);
     }

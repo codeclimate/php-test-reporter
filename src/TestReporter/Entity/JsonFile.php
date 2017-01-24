@@ -10,7 +10,7 @@ class JsonFile extends SatooshiJsonFile
 {
     public function toArray()
     {
-        return [
+        return array(
             "partial"      => false,
             "run_at"       => $this->getRunAt(),
             "repo_token"   => $this->getRepoToken(),
@@ -18,7 +18,7 @@ class JsonFile extends SatooshiJsonFile
             "git"          => $this->collectGitInfo(),
             "ci_service"   => $this->collectCiServiceInfo(),
             "source_files" => $this->collectSourceFiles(),
-        ];
+        );
     }
 
     public function getRunAt()
@@ -36,10 +36,10 @@ class JsonFile extends SatooshiJsonFile
      */
     protected function getEnvironment()
     {
-        return [
+        return array(
             "pwd"             => getcwd(),
             "package_version" => Version::VERSION,
-        ];
+        );
     }
 
     /**
@@ -49,11 +49,11 @@ class JsonFile extends SatooshiJsonFile
     {
         $command = new GitCommand();
 
-        return [
+        return array(
             "head"         => $command->getHead(),
             "branch"       => $command->getBranch(),
             "committed_at" => $command->getCommittedAt(),
-        ];
+        );
     }
 
     /**
@@ -71,13 +71,17 @@ class JsonFile extends SatooshiJsonFile
      */
     protected function collectSourceFiles()
     {
-        return array_map(function (SourceFile $sourceFile) {
-            return [
+        $data = array();
+
+        foreach ($this->getSourceFiles() as $sourceFile) {
+            $data[] = array(
                 "name"     => $sourceFile->getName(),
                 "coverage" => json_encode($sourceFile->getCoverage()),
                 "blob_id"  => $this->calculateBlobId($sourceFile),
-            ];
-        }, array_values($this->getSourceFiles()));
+            );
+        }
+
+        return $data;
     }
 
     /**

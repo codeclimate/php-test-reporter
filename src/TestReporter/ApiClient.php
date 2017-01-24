@@ -31,19 +31,19 @@ class ApiClient
     {
         $response = new \stdClass;
         $payload  = (string)$json;
-        $options  = [
-            'http' => [
+        $options  = array(
+            'http' => array(
                 'method'  => 'POST',
-                'header'  => [
+                'header'  => array(
                     'Host: codeclimate.com',
                     'Content-Type: application/json',
                     'User-Agent: Code Climate (PHP Test Reporter v' . Version::VERSION . ')',
                     'Content-Length: ' . strlen($payload),
-                ],
+                ),
                 'content' => $payload,
                 "timeout" => 10,
-            ],
-        ];
+            ),
+        );
         $context  = stream_context_create($options);
         $url      = $this->apiHost . '/test_reports';
 
@@ -81,12 +81,12 @@ class ApiClient
         curl_setopt(
             $curl,
             CURLOPT_HTTPHEADER,
-            [
+            array(
                 'Host: codeclimate.com',
                 'Content-Type: application/json',
                 'User-Agent: Code Climate (PHP Test Reporter v' . Version::VERSION . ')',
                 'Content-Length: ' . strlen($payload),
-            ]
+            )
         );
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
@@ -109,7 +109,7 @@ class ApiClient
 
             $response->code    = $errorCode;
             $response->message = $error['message'];
-            $response->headers = [ ];
+            $response->headers = array( );
             $response->body    = null;
         }
 

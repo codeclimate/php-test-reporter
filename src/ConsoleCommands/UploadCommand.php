@@ -29,7 +29,7 @@ class UploadCommand extends Command
                 null,
                 InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
                 'Location of clover style CodeCoverage report, as produced by PHPUnit\'s --coverage-clover option.',
-                [ 'build/logs/clover.xml' ]
+                array( 'build/logs/clover.xml' )
             );
     }
 

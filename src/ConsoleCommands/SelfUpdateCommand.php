@@ -23,7 +23,7 @@ class SelfUpdateCommand extends Command
 {
     protected function configure()
     {
-        $this->setAliases([ 'selfupdate' ]);
+        $this->setAliases(array( 'selfupdate' ));
         $this->setDescription('Updates this PHAR to latest version.');
 
         $this->addOption(

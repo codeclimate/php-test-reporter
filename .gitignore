@@ -3,5 +3,6 @@
 Vagrantfile
 build/
 vendor/
+box.phar
 composer.lock
 composer.phar
