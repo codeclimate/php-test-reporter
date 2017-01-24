@@ -20,3 +20,13 @@ function xdebug-enable() {
         mv "$config.bak" $config
     fi
 }
+
+function run-tests() {
+    if [[ "$WITH_COVERAGE" == "true" ]]; then
+        xdebug-enable
+        vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
+        xdebug-disable
+    else
+       vendor/bin/phpunit
+    fi
+}

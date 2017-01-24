@@ -27,14 +27,14 @@ matrix:
     - php: 7.1
       env: WITH_LOWEST=true
     - php: 7.1
-      env: WITH_HIGHEST=true
+      env: WITH_HIGHEST=true WITH_COVERAGE=true
 
 cache:
   directories:
     - $HOME/.composer/cache
 
 before_install:
-  - source .travis/xdebug.sh
+  - source .travis/travis.sh
   - xdebug-disable
   - composer self-update
   - composer validate
@@ -47,9 +47,7 @@ before_script:
   - git config --global user.name "Travis CI"
 
 script:
-  - xdebug-enable
-  - vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
-  - xdebug-disable
+  - run-tests
 
 after_success:
-  - php composer/bin/test-reporter
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then php composer/bin/test-reporter; fi
