@@ -7,7 +7,7 @@ matrix:
     - php: 5.3
       env: WITH_LOWEST=true
     - php: 5.3
-      env: WITH_HIGHEST=true
+      env: WITH_HIGHEST=true WITH_PHAR=true
     - php: 5.4
       env: WITH_LOWEST=true
     - php: 5.4
@@ -51,3 +51,13 @@ script:
 
 after_success:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then php composer/bin/test-reporter; fi
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_API_KEY
+  file: build/codeclimate-test-reporter.phar
+  skip_cleanup: true
+  on:
+    tags: true
+    php: 5.3
+    condition: "$WITH_HIGHEST == true && $WITH_PHAR == true"
