@@ -3,6 +3,7 @@
 Vagrantfile
 build/
 vendor/
+.php_cs.cache
 box.phar
 composer.lock
 composer.phar

@@ -27,6 +27,7 @@
         "symfony/console": "^2.0 || ^3.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0.0",
         "phpunit/phpunit": "^4.8.31"
     },
     "autoload": {
@@ -48,6 +49,10 @@
             "curl -LSs https://box-project.github.io/box2/installer.php | php",
             "php box.phar --version",
             "php box.phar build -v"
+        ],
+        "cs": [
+            "composer install --prefer-dist",
+            "php-cs-fixer fix --config=.php_cs --verbose --diff"
         ]
     },
     "extra": {

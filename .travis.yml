@@ -7,7 +7,7 @@ matrix:
     - php: 5.3
       env: WITH_LOWEST=true
     - php: 5.3
-      env: WITH_HIGHEST=true WITH_PHAR=true
+      env: WITH_HIGHEST=true WITH_CS=true WITH_PHAR=true
     - php: 5.4
       env: WITH_LOWEST=true
     - php: 5.4
@@ -32,6 +32,7 @@ matrix:
 cache:
   directories:
     - $HOME/.composer/cache
+    - $HOME/.php-cs-fixer
 
 before_install:
   - source .travis/travis.sh
@@ -45,8 +46,10 @@ install:
 before_script:
   - git config --global user.email "travis-ci@codeclimate.com"
   - git config --global user.name "Travis CI"
+  - mkdir -p "$HOME/.php-cs-fixer"
 
 script:
+  - if [[ "$WITH_CS" == "true" ]]; then vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --diff --dry-run; fi
   - run-tests
 
 after_success:
