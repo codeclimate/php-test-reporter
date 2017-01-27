@@ -142,6 +142,8 @@ https://github.com/codeclimate/php-test-reporter
 
 This package is maintained by Bryan Helmkamp (bryan@codeclimate.com).
 
+For more details, see [`CONTRIBUTING.md`](.github/CONTRIBUTING.md).
+
 ## Copyright
 
 See LICENSE.txt
