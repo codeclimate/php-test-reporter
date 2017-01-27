@@ -53,6 +53,10 @@
         "cs": [
             "composer install --prefer-dist",
             "php-cs-fixer fix --config=.php_cs --verbose --diff"
+        ],
+        "test": [
+            "composer install --prefer-dist",
+            "phpunit --configuration=phpunit.xml.dist"
         ]
     },
     "extra": {
