@@ -61,7 +61,7 @@ class JsonFile extends SatooshiJsonFile
      */
     protected function collectCiServiceInfo()
     {
-        $ciInfo = new CiInfo();
+        $ciInfo = new CiInfo($_SERVER);
 
         return $ciInfo->toArray();
     }
