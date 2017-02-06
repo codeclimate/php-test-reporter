@@ -59,6 +59,10 @@ class CiInfo
             return $this->werckerProperties($server);
         }
 
+        if (isset($server["GITLAB_CI"])) {
+            return $this->gitlabCiProperties($server);
+        }
+
         return array();
     }
 
@@ -174,6 +178,20 @@ class CiInfo
             "build_url"        => $server["WERCKER_BUILD_URL"],
             "branch"           => $server["WERCKER_GIT_BRANCH"],
             "commit_sha"       => $server["WERCKER_GIT_COMMIT"],
+        );
+    }
+
+    /**
+     * @param array $server
+     * @return array
+     */
+    protected function gitlabCiProperties(array $server)
+    {
+        return array(
+            "name"             => "gitlabci",
+            "build_identifier" => $server["CI_BUILD_ID"],
+            "branch"           => $server["CI_BUILD_REF_NAME"],
+            "commit_sha"       => $server["CI_BUILD_REF"],
         );
     }
 }

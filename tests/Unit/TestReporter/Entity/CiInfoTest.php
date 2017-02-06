@@ -197,6 +197,32 @@ final class CiInfoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $info->toArray());
     }
 
+    public function testToArrayReturnsGitlabCiProperties()
+    {
+        $branch = 'fix/test';
+        $buildIdentifier = 9000;
+        $commitSha = \sha1('foo');
+
+        $server = array(
+            'CI' => true,
+            'GITLAB_CI' => true,
+            'CI_BUILD_REF' => $commitSha,
+            'CI_BUILD_REF_NAME' => $branch,
+            'CI_BUILD_ID' => $buildIdentifier,
+        );
+
+        $info = new CiInfo($server);
+
+        $expected = array(
+            'name' => 'gitlabci',
+            'build_identifier' => $buildIdentifier,
+            'branch' => $branch,
+            'commit_sha' => $commitSha,
+        );
+
+        $this->assertEquals($expected, $info->toArray());
+    }
+
     public function testToArrayReturnsWerckerProperties()
     {
         $branch = 'fix/test';

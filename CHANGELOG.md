@@ -5,7 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CH
 
 ## [Unreleased](https://github.com/codeclimate/php-test-reporter/compare/v0.4.2...HEAD)
 
-(nothing yet)
+### Added
+
+- Added support for Gitlab CI ([#113](https://github.com/codeclimate/php-test-reporter/pull/113))
 
 ## [v0.4.2](https://github.com/codeclimate/php-test-reporter/compare/v0.4.1...v0.4.2)
 
