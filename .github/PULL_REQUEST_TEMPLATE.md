@@ -1,8 +1,8 @@
 This PR
 
-* [x] 
 * [ ] 
-* [ ] 
+* [ ] has tests
+* [ ] updates changelog if appropriate
 
 Follows #.
 Related to #.
