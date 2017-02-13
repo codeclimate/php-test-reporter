@@ -214,7 +214,7 @@ final class CiInfoTest extends \PHPUnit_Framework_TestCase
         $info = new CiInfo($server);
 
         $expected = array(
-            'name' => 'gitlabci',
+            'name' => 'gitlab-ci',
             'build_identifier' => $buildIdentifier,
             'branch' => $branch,
             'commit_sha' => $commitSha,

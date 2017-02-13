@@ -188,7 +188,7 @@ class CiInfo
     protected function gitlabCiProperties(array $server)
     {
         return array(
-            "name"             => "gitlabci",
+            "name"             => "gitlab-ci",
             "build_identifier" => $server["CI_BUILD_ID"],
             "branch"           => $server["CI_BUILD_REF_NAME"],
             "commit_sha"       => $server["CI_BUILD_REF"],
