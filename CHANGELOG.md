@@ -3,9 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a CHANGELOG](http://keepachangelog.com).
 
-## [Unreleased](https://github.com/codeclimate/php-test-reporter/compare/v0.4.3...HEAD)
+## [Unreleased](https://github.com/codeclimate/php-test-reporter/compare/v0.4.4...HEAD)
 
 (add details here)
+
+## [v0.4.4](https://github.com/codeclimate/php-test-reporter/compare/v0.4.3...v0.4.4)
+
+### Fixed
+
+- Format Gitlab CI payloads in the same way as we do in other test reporters ([#116](https://github.com/codeclimate/php-test-reporter/pull/116))
 
 ## [v0.4.3](https://github.com/codeclimate/php-test-reporter/compare/v0.4.2...v0.4.3)
 
