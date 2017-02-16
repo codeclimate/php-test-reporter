@@ -64,15 +64,8 @@ class CoverageCollector
      */
     public function collectAsJson()
     {
-        $cloverJsonFile = $this->api->collectCloverXml()->getJsonFile();
+        $jsonFile = $this->api->collectCloverXml()->getJsonFile();
 
-        $jsonFile = new JsonFile();
-        $jsonFile->setRunAt($cloverJsonFile->getRunAt());
-
-        foreach ($cloverJsonFile->getSourceFiles() as $sourceFile) {
-            $jsonFile->addSourceFile($sourceFile);
-        }
-
-        return $jsonFile;
+        return new JsonFile($jsonFile);
     }
 }

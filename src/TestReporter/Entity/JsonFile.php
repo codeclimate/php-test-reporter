@@ -3,11 +3,20 @@ namespace CodeClimate\PhpTestReporter\TestReporter\Entity;
 
 use CodeClimate\PhpTestReporter\Constants\Version;
 use CodeClimate\PhpTestReporter\System\Git\GitCommand;
-use Satooshi\Bundle\CoverallsV1Bundle\Entity\JsonFile as SatooshiJsonFile;
-use Satooshi\Bundle\CoverallsV1Bundle\Entity\SourceFile;
+use Satooshi\Bundle\CoverallsV1Bundle;
 
-class JsonFile extends SatooshiJsonFile
+class JsonFile
 {
+    /**
+     * @var CoverallsV1Bundle\Entity\JsonFile
+     */
+    private $jsonFile;
+
+    public function __construct(CoverallsV1Bundle\Entity\JsonFile $jsonFile)
+    {
+        $this->jsonFile = $jsonFile;
+    }
+
     public function toArray()
     {
         return array(
@@ -23,7 +32,7 @@ class JsonFile extends SatooshiJsonFile
 
     public function getRunAt()
     {
-        return strtotime(parent::getRunAt());
+        return strtotime($this->jsonFile->getRunAt());
     }
 
     public function getRepoToken()
@@ -69,7 +78,7 @@ class JsonFile extends SatooshiJsonFile
     {
         $data = array();
 
-        foreach ($this->getSourceFiles() as $sourceFile) {
+        foreach ($this->jsonFile->getSourceFiles() as $sourceFile) {
             $data[] = array(
                 "name"     => $sourceFile->getName(),
                 "coverage" => json_encode($sourceFile->getCoverage()),
@@ -81,14 +90,19 @@ class JsonFile extends SatooshiJsonFile
     }
 
     /**
-     * @param SourceFile $sourceFile
+     * @param CoverallsV1Bundle\Entity\SourceFile $sourceFile
      * @return string
      */
-    protected function calculateBlobId(SourceFile $sourceFile)
+    protected function calculateBlobId(CoverallsV1Bundle\Entity\SourceFile $sourceFile)
     {
         $content = file_get_contents($sourceFile->getPath());
         $header  = "blob " . strlen($content) . "\0";
 
         return sha1($header . $content);
+    }
+
+    public function __toString()
+    {
+        return json_encode($this->toArray());
     }
 }
