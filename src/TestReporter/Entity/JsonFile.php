@@ -49,11 +49,7 @@ class JsonFile extends SatooshiJsonFile
     {
         $command = new GitCommand();
 
-        return array(
-            "head"         => $command->getHead(),
-            "branch"       => $command->getBranch(),
-            "committed_at" => $command->getCommittedAt(),
-        );
+        return $command->getGitInfo()->toArray();
     }
 
     /**
