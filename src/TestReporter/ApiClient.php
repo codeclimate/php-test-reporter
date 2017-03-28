@@ -35,7 +35,7 @@ class ApiClient
             'http' => array(
                 'method'  => 'POST',
                 'header'  => array(
-                    'Host: codeclimate.com',
+                    'Host: ' . parse_url($this->apiHost, PHP_URL_HOST),
                     'Content-Type: application/json',
                     'User-Agent: Code Climate (PHP Test Reporter v' . Version::VERSION . ')',
                     'Content-Length: ' . strlen($payload),
