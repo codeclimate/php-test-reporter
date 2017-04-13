@@ -2,32 +2,32 @@ language: php
 
 sudo: false
 
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
+  - nightly
+
+os:
+  - linux
+
+env:
+  - COMPOSER_FLAGS="--prefer-lowest"
+  - COMPOSER_FLAGS=""
+
 matrix:
   include:
     - php: 5.3
-      env: WITH_LOWEST=true
-    - php: 5.3
-      env: WITH_HIGHEST=true WITH_CS=true WITH_PHAR=true
-    - php: 5.4
-      env: WITH_LOWEST=true
-    - php: 5.4
-      env: WITH_HIGHEST=true
-    - php: 5.5
-      env: WITH_LOWEST=true
-    - php: 5.5
-      env: WITH_HIGHEST=true
-    - php: 5.6
-      env: WITH_LOWEST=true
-    - php: 5.6
-      env: WITH_HIGHEST=true
-    - php: 7.0
-      env: WITH_LOWEST=true
-    - php: 7.0
-      env: WITH_HIGHEST=true
+      env: BUILD_PHAR=true
     - php: 7.1
-      env: WITH_LOWEST=true
+      env: COVERAGE=yes
     - php: 7.1
-      env: WITH_HIGHEST=true WITH_COVERAGE=true
+      env: EXECUTE_CS_CHECK=yes
+  allow_failures:
+    - php: nightly
 
 cache:
   directories:
@@ -36,12 +36,13 @@ cache:
 
 before_install:
   - source .travis/travis.sh
-  - xdebug-disable
-  - composer self-update
-  - composer validate
+  - if [[ $TRAVIS_PHP_VERSION != hhvm && $TRAVIS_PHP_VERSION != nightly && $COVERAGE != yes ]]; then phpenv config-rm xdebug.ini; fi
+  - if [[ $TRAVIS_PHP_VERSION != hhvm ]]; then echo 'opcache.enable=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi
+  - if [[ $TRAVIS_PHP_VERSION != hhvm ]]; then echo 'opcache.enable_cli=1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini; fi
+  - travis_retry composer self-update
 
 install:
-  - if [[ "$WITH_LOWEST" == "true" ]]; then composer update --prefer-lowest --prefer-dist; else composer install --prefer-dist; fi
+  - travis_retry composer update --optimize-autoloader --prefer-dist --prefer-stable --no-progress --no-interaction $COMPOSER_FLAGS
 
 before_script:
   - git config --global user.email "travis-ci@codeclimate.com"
@@ -49,11 +50,12 @@ before_script:
   - mkdir -p "$HOME/.php-cs-fixer"
 
 script:
-  - if [[ "$WITH_CS" == "true" ]]; then vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --diff --dry-run; fi
-  - run-tests
+  - composer validate
+  - if [[ $COVERAGE == yes ]]; then vendor/bin/phpunit --coverage-clover=build/logs/clover.xml; else vendor/bin/phpunit --no-coverage; fi
+  - if [[ $EXECUTE_CS_CHECK == yes ]]; then php -n -d memory_limit=768M vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --diff --dry-run; fi
 
 after_success:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then php composer/bin/test-reporter; fi
+  - if [[ $COVERAGE == yes ]]; then php composer/bin/test-reporter; fi
 
 deploy:
   provider: releases
@@ -63,4 +65,4 @@ deploy:
   on:
     tags: true
     php: 5.3
-    condition: "$WITH_HIGHEST == true && $WITH_PHAR == true"
+    condition: "$BUILD_PHAR == true"
