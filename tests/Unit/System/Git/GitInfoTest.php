@@ -4,7 +4,7 @@ namespace CodeClimate\PhpTestReporter\Tests\Unit\System\Git;
 
 use CodeClimate\PhpTestReporter\System\Git\GitInfo;
 
-class GitInfoTest extends \PHPUnit_Framework_TestCase
+class GitInfoTest extends \PHPUnit\Framework\TestCase
 {
     public function testIsFinal()
     {

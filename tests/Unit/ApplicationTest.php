@@ -4,7 +4,7 @@ namespace CodeClimate\PhpTestReporter\Tests\Unit;
 use CodeClimate\PhpTestReporter\Application;
 use Symfony\Component\Console\Tester\ApplicationTester;
 
-class ApplicationTest extends \PHPUnit_Framework_TestCase
+class ApplicationTest extends \PHPUnit\Framework\TestCase
 {
     const PROJECT_DIR = "/tmp/php-test-reporter-example-project";
 

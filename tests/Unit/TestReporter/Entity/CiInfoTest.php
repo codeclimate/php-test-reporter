@@ -4,7 +4,7 @@ namespace CodeClimate\PhpTestReporter\Tests\Unit\TestReporter\Entity;
 
 use CodeClimate\PhpTestReporter\TestReporter\Entity\CiInfo;
 
-final class CiInfoTest extends \PHPUnit_Framework_TestCase
+final class CiInfoTest extends \PHPUnit\Framework\TestCase
 {
     public function testToArrayReturnsEmptyArrayIfUnableToDetermineEnvironment()
     {
