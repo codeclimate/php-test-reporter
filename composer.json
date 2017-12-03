@@ -24,7 +24,7 @@
         "padraic/phar-updater": "^1.0",
         "psr/log": "^1.0",
         "satooshi/php-coveralls": "^1.0",
-        "symfony/console": "^2.0 || ^3.0"
+        "symfony/console": "^2.0 || ^3.0 || ^4.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.0.0",
@@ -56,7 +56,7 @@
         ],
         "test": [
             "composer install --prefer-dist",
-            "phpunit --configuration=phpunit.xml.dist"
+            "./vendor/bin/phpunit --configuration=phpunit.xml.dist"
         ]
     },
     "extra": {
